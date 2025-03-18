@@ -1,0 +1,8 @@
+export {default as webMekanic} from './webmekanic.png'
+export {default as calendly} from './calendly.png'
+export {default as discord} from './discord.svg'
+export {default as google} from './google.png'
+export {default as microsoft} from './microsoft.png'
+export {default as netflix} from './netflix.png'
+export {default as slack} from './slack.svg'
+export {default as bgImage} from './favicon.png'
