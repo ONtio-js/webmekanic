@@ -26,12 +26,12 @@ import {
 import { GrCheckmark } from 'react-icons/gr';
 import { FaArrowRight } from 'react-icons/fa';
 const ServicePage = () => {
-  const [customWebsite, setCustomWebsite] = useState(true);
-  const [userInterface, setUserInterface] = useState(false);
+  const [customWebsite, setCustomWebsite] = useState(false);
+  const [userInterface, setUserInterface] = useState(true);
   const [mobileApplication, setMobileApplication] = useState(false);
   const [smaintenance,setSmaintenance] = useState(false);
   const [rotate,setRotate] = useState(false);
-  const [active,setActive] = useState(2);
+  const [active,setActive] = useState(1);
   const handleServiceBtn = (title) => {
     
     if(title=='Maintenance & Support'){
@@ -57,11 +57,13 @@ const ServicePage = () => {
       setUserInterface(true);
     }
   }
+  document.title =
+		'Our Services | Tailored Digital Solutions to Elevate Your Brand';
 	return (
 		<>
 			<div className='w-full px-5 md:px-20 text-center  my-5 flex flex-col items-center gap-5 py-20'>
 				<h3 className='font-bold text-xl md:text-3xl capitalize '>
-					our services
+					Empowering Your Digital Transformation
 				</h3>
 				<p className='max-w-[600px] text-lightblack text-center'>
 					Unlock the full potential of your business with our
@@ -108,7 +110,9 @@ const ServicePage = () => {
 							</p>
 							<p
 								className={`${
-									active == service.id ? 'hidden' : 'hidden md:flex'
+									active == service.id
+										? 'hidden'
+										: 'hidden md:flex'
 								}  capitalize items-center gap-2 text-primary text-sm`}
 							>
 								learn more{' '}
@@ -119,14 +123,22 @@ const ServicePage = () => {
 						</motion.button>
 					))}
 				</div>
-				<div className='px-5 md:px-20 pb-8 md:py-16 text-xl text-lightblack max-w-[1200px]'>
+				<div className='px-5 md:px-20 pb-8 md:py-16  text-lightblack max-w-[1200px]'>
 					{/* ui/ux design start */}
 					<motion.div
-						className={`${userInterface ? 'block font-thin text-base md:text-xl' : 'hidden'}`}
+						className={`${
+							userInterface
+								? 'block  '
+								: 'hidden'
+						}`}
 						id='ui/ux'
 						animate={{ translateY: userInterface ? 0 : 100 }}
 					>
-						<div className='grid gap-10 pt-12 '>
+						<h1 className='font-semibold md:text-2xl pt-12 text-black'>
+							UI/UX Design – Crafting Engaging & User-Centric
+							Experiences
+						</h1>
+						<div className='grid gap-10 pt-5 '>
 							<div>
 								<img
 									src={design}
@@ -136,10 +148,10 @@ const ServicePage = () => {
 								/>
 							</div>
 							<div>
-								<h2 className='font-medium text-2xl text-black pb-8 '>
-									About UI/UX Design Service
+								<h2 className='font-medium md:text-2xl text-black pb-4 '>
+									User First Design
 								</h2>
-								<p className='sm:text-xl leading-[1.8] '>
+								<p className='font-normal '>
 									Great design goes beyond aesthetics. it’s
 									about usability, accessibility, and creating
 									experiences that users love. Our UI/UX
@@ -149,7 +161,7 @@ const ServicePage = () => {
 								</p>
 							</div>
 							<div>
-								<h2 className='capitalize font-medium text-2xl py-5 text-black'>
+								<h2 className='capitalize font-medium md:text-2xl py-5 text-black'>
 									service Includes
 								</h2>
 								{uiUxDesign[0].map((item, index) => (
@@ -204,11 +216,19 @@ const ServicePage = () => {
 					{/* ui/ux design end  */}
 					{/* web development start  */}
 					<motion.div
-						className={`${customWebsite ? 'block font-thin text-base sm:text-xl' : 'hidden'}`}
+						className={`${
+							customWebsite
+								? 'block'
+								: 'hidden'
+						}`}
 						animate={{ translateX: customWebsite ? 0 : -100 }}
 						id='website'
 					>
-						<div className='grid gap-10 pt-12 pb-32 '>
+						<h1 className='font-semibold md:text-2xl text-black pt-10'>
+							Web Development – Building High-Performance,
+							Scalable Websites
+						</h1>
+						<div className='grid gap-10 pt-5 pb-32 '>
 							<div>
 								<img
 									src={website}
@@ -218,10 +238,10 @@ const ServicePage = () => {
 								/>
 							</div>
 							<div>
-								<h2 className='font-medium text-2xl pb-5 '>
-									About Web Development Service
+								<h2 className='font-medium md:text-2xl pb-5 '>
+									Blending Aesthetics with Performance
 								</h2>
-								<p className='text-xl leading-[1.8]'>
+								<p className=''>
 									Your website is your digital storefront. it
 									should be fast, secure, and visually
 									appealing. We develop high-performance
@@ -230,11 +250,11 @@ const ServicePage = () => {
 								</p>
 							</div>
 							<div>
-								<h2 className='capitalize font-medium text-2xl py-5'>
+								<h2 className='capitalize font-medium md:text-2xl py-5'>
 									service Includes
 								</h2>
 								{webDevelopment[0].map((item, index) => (
-									<div className='sm:text-xl leading-[1.4] flex items-center gap-4'>
+									<div className=' flex items-center gap-4'>
 										<input
 											type='checkbox'
 											checked
@@ -257,7 +277,7 @@ const ServicePage = () => {
 										className='w-[50%]'
 									/>
 								</div>
-								<p className='sm:text-xl leading-[1.8] '>
+								<p className=' '>
 									We build websites that don’t just look good
 									but also perform exceptionally. Whether you
 									need a simple landing page or a complex web
@@ -266,11 +286,11 @@ const ServicePage = () => {
 									user experience.
 								</p>
 								<div>
-									<h2 className='font-medium text-2xl py-4'>
+									<h2 className='font-medium md:text-2xl py-4'>
 										Benefits
 									</h2>
 									{webDevelopment[1].map((item) => (
-										<div className='flex items-center gap-4 sm:text-xl leading-[1.8]'>
+										<div className='flex items-center gap-4 '>
 											<GrCheckmark />
 											<p className=' list-inside'>
 												{item}
@@ -284,11 +304,19 @@ const ServicePage = () => {
 					{/* web development start  */}
 					{/* mobile app start  */}
 					<motion.div
-						className={`${mobileApplication ? 'block font-thin text-base sm:text-xl' : 'hidden'}`}
+						className={`${
+							mobileApplication
+								? 'block '
+								: 'hidden'
+						}`}
 						id='mobileApp'
 						animate={{ translateX: mobileApplication ? 0 : 100 }}
 					>
-						<div className='grid gap-10 pt-12 '>
+						<h2 className='font-semibold md:text-2xl  pt-10'>
+							App Development – Building Powerful & Intuitive
+							Mobile Experiences
+						</h2>
+						<div className='grid gap-10 pt-5 '>
 							<div>
 								<img
 									src={app}
@@ -298,23 +326,25 @@ const ServicePage = () => {
 								/>
 							</div>
 							<div>
-								<h2 className='font-medium text-2xl pb-5 '>
-									About App Development Service
+								<h2 className='font-medium md:text-2xl pb-5 '>
+									End-to-End Mobile App Development
 								</h2>
-								<p className='sm:text-xl leading-[1.8]'>
-									Mobile apps have become essential for
-									businesses to connect with customers on the
-									go. We create powerful, intuitive, and
-									high-performing mobile applications that
-									offer seamless experiences.
+								<p className=''>
+									In today’s digital world, mobile apps are
+									essential for businesses to connect with
+									customers on the go. We develop
+									high-performance, user-friendly mobile
+									applications that deliver seamless
+									experiences, ensuring engagement and growth
+									across iOS and Android platforms.
 								</p>
 							</div>
 							<div>
-								<h2 className='capitalize font-medium text-2xl py-5'>
+								<h2 className='capitalize font-medium md:text-2xl py-5'>
 									service Includes
 								</h2>
 								{mobileApp[0].map((item, index) => (
-									<div className='sm:text-xl leading-[1.8] flex items-center gap-4'>
+									<div className='flex items-center gap-4'>
 										<input
 											type='checkbox'
 											checked
@@ -337,7 +367,7 @@ const ServicePage = () => {
 										className='w-[50%]'
 									/>
 								</div>
-								<p className='sm:text-xl leading-[1.8] '>
+								<p className=''>
 									From concept to launch, we craft mobile apps
 									that are fast, scalable, and designed for
 									success. Whether you need a native app or a
@@ -345,11 +375,11 @@ const ServicePage = () => {
 									delivers a seamless user experience.
 								</p>
 								<div>
-									<h2 className='font-medium text-2xl py-4'>
+									<h2 className='font-medium md:text-2xl py-4'>
 										Benefits
 									</h2>
 									{mobileApp[1].map((item) => (
-										<div className='flex items-center gap-4 sm:text-xl'>
+										<div className='flex items-center gap-4'>
 											<GrCheckmark />
 											<p className=' list-inside'>
 												{item}
@@ -364,12 +394,18 @@ const ServicePage = () => {
 					{/* maintenance service start  */}
 					<motion.div
 						className={`${
-							smaintenance ? 'block font-thin text-base sm:text-xl leading-[1.8]' : 'hidden opacity-10'
+							smaintenance
+								? 'block '
+								: 'hidden opacity-10'
 						} transition-opacity opacity-100 delay-100 ease-in`}
 						id='maintenance'
 						animate={{ translateY: smaintenance ? 0 : 100 }}
 					>
-						<div className='grid gap-10 pt-12 pb-32 '>
+						<h1 className='font-semibold md:text-2xl  pt-10 '>
+							Maintenance & Support – Ensuring Peak Performance &
+							Security
+						</h1>
+						<div className='grid gap-10 pt-5 pb-32 '>
 							<div>
 								<img
 									src={maintenance1}
@@ -379,8 +415,9 @@ const ServicePage = () => {
 								/>
 							</div>
 							<div>
-								<h2 className='font-medium text-2xl pb-5 '>
-									About Maintenance & Support Service
+								<h2 className='font-medium text-xl md:text-2xl pb-5 '>
+									Reliable Website and App Maintenance for
+									Optimal Performance
 								</h2>
 								<p>
 									A great website or app needs continuous
@@ -391,11 +428,11 @@ const ServicePage = () => {
 								</p>
 							</div>
 							<div>
-								<h2 className='capitalize font-medium text-2xl py-5'>
+								<h2 className='capitalize font-medium text-xl md:text-2xl py-5'>
 									service Includes
 								</h2>
 								{maintenance[0].map((item, index) => (
-									<div className='sm:text-xl flex items-center gap-4'>
+									<div className=' flex items-center gap-4'>
 										<input
 											type='checkbox'
 											checked
@@ -418,7 +455,7 @@ const ServicePage = () => {
 										className='w-[50%]'
 									/>
 								</div>
-								<p className='sm:text-xl '>
+								<p className=''>
 									We provide ongoing maintenance and support
 									to keep your website and mobile app secure,
 									updated, and performing at their best. Our
@@ -426,7 +463,7 @@ const ServicePage = () => {
 									they impact your business.
 								</p>
 								<div>
-									<h2 className='font-medium text-2xl py-4'>
+									<h2 className='font-medium text-xl  md:text-2xl py-4'>
 										Benefits
 									</h2>
 									{maintenance[1].map((item) => (

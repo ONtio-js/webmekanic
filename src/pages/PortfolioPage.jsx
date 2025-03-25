@@ -6,21 +6,23 @@ import { recentWorks } from '../Constant';
 import { Link } from 'react-router-dom';
 import CtaButton from '../components/CtaButton';
 const PortfolioPage = () => {
+	document.title =
+		'Our Portfolio | Showcasing Creative and Impactful Digital Solutions';
   return (
 		<>
 			<div className='mt-16 md:mt-0  py-10 md:py-32 flex flex-col items-center px-5 sm:px-0 w-full'>
 				<h3 className='text-3xl text-center  capitalize font-bold py-3 text-black max-w-[600px]'>
-					Bringing Ideas to Life with World-Class Digital Experiences
+					Transforming Ideas into World-Class Digital Experiences
 				</h3>
-				<p className='text-lightblack max-w-[650px] text-sm sm:text-base text-center'>
-					We’ve helped businesses worldwide turn their visions into
-					reality. Our expertise has empowered clients to launch and
-					scale successful digital products. Explore our portfolio and
-					discover how we craft innovative, high-impact designs that
-					drive growth.
+				<p className='text-lightblack max-w-[670px] text-sm sm:text-base text-center'>
+					At WebMekanic, we help businesses worldwide bring their
+					visions to life with cutting-edge web and mobile solutions.
+					Our expertise enables clients to launch, scale, and succeed
+					with high-impact, user-centric designs that drive engagement
+					and business growth.
 				</p>
 			</div>
-			<div className='py-10 px-5 md:p-10 bg-primary/10 sm:mx-10 rounded-2xl'>
+			<div className='py-10 px-5 md:p-10 bg-primary/10 sm:mx-10 rounded-2xl mb-24'>
 				<div className='py-10'>
 					<h2 className='text-center font-bold text-3xl capitalize'>
 						our portfolio

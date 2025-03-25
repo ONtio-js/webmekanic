@@ -26,7 +26,7 @@ const Header = () => {
 					/>
 				</Link>
 				<div
-					className='sm:hidden'
+					className='md:hidden'
 					onClick={() => {
 						setOpen((prev) => !prev);
 					}}
@@ -41,7 +41,7 @@ const Header = () => {
 					/>
 				</div>
 
-				<nav className='hidden sm:block'>
+				<nav className='hidden md:block'>
 					<ul className='flex items-center justify-around gap-x-3  font-[400]'>
 						<li className='group px-3 py-1 rounded-md overflow-hidden capitalize'>
 							<Link to={'/'}>Home</Link>

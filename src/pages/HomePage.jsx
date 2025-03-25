@@ -14,30 +14,117 @@ import Company from '../components/Company';
 import Approach from '../components/Approach';
 import Teams from '../components/Teams';
 import { useNavigate, Link } from 'react-router-dom';
-import { dhome, dhome2, dhome3, dhome4, ikoro, spacee, work1, work2 } from '../assets/RecentsWorks';
+import {
+	dhome,
+	dhome2,
+	dhome3,
+	dhome4,
+	ikoro,
+	spacee,
+	work1,
+	work2,
+} from '../assets/RecentsWorks';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Testmonials from '../components/Testmonials';
 import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
+import { Helmet } from 'react-helmet';
 const HomePage = () => {
 	const navigate = useNavigate();
-	const [rotate,setRotate] =useState(false);
+	const [rotate, setRotate] = useState(false);
 	const [rotate1, setRotate1] = useState(false);
+
 	return (
 		<>
-			<div className='mt-16 px-5 md:px-20   flex flex-col sm:flex-row sm:items-center justify-between md:gap-x-20'>
-				<div className='   md:flex-1 md:max-w-[800px]'>
-					<h3 className='font-[700] py-3 text-3xl md:font-bold md:text-5xl text-center sm:text-left lg:text-[4.8em] capitalize max-w-[800px]'>
-						crafting digital excellence. your vision,{' '}
-						<span className='text-primary '>our expertise.</span>
+			<Helmet>
+				<title>
+					Welcome to webMekanic | Crafting Exceptional Digital
+					Experiences
+				</title>
+				<meta
+					name='description'
+					content='webMekanic is a premier software development company specializing in crafting custom web and mobile applications tailored to drive business success. Our team of experts is dedicated to delivering innovative and high-quality solutions that meet the unique needs of our clients. citeturn0search5 '
+				/>
+				<meta
+					name='keywords'
+					content='
+custom software development, web development, mobile app development, business software solutions, IT consulting, web design, enterprise applications, digital transformation, software engineering, app development services, web applications, mobile applications, software consulting, innovative tech solutions, business automation, software agency, webMekanic'
+				/>
+				<link
+					rel='canonical'
+					href='https://webmekanic.com'
+				/>
+				<meta
+					property='og:title'
+					content='Custom Software Solutions | WebMekanic'
+				/>
+				<meta
+					property='og:description'
+					content='WebMekanic offers custom software, web, and mobile app development services to help businesses grow through innovative digital solutions.'
+				/>
+				<meta
+					property='og:url'
+					content='https://webmekanic.com'
+				/>
+				<meta
+					property='og:image'
+					content='https://webmekanic.com/assets/images/teams.svg'
+				/>
+				<meta
+					property='og:type'
+					content='website'
+				/>
+				<meta
+					name='twitter:card'
+					content='summary_large_image'
+				/>
+				<meta
+					name='twitter:title'
+					content='Custom Software Solutions | WebMekanic'
+				/>
+				<meta
+					name='twitter:description'
+					content='WebMekanic offers custom software, web, and mobile app development services to help businesses grow through innovative digital solutions.'
+				/>
+				<meta
+					name='twitter:image'
+					content='https://webmekanic.com/assets/images/teams.svg'
+				/>
+				<script type='application/ld+json'>{`
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WebMekanic",
+      "url": "https://webmekanic.com",
+      "logo": "https://webmekanic.com/assets/logo/webmekanic.svg",
+      "description": "WebMekanic offers custom software, web, and mobile app development services to help businesses grow through innovative digital solutions.",
+      "sameAs": [
+        "https://web.facebook.com/profile.php?id=100088850304959",
+        "https://www.linkedin.com/in/web-mekanic-a98552358/"
+      ]
+    }
+    `}</script>
+			</Helmet>
+			<div className='mt-20 md:mt-10 px-5 md:px-20   flex flex-col sm:flex-row sm:items-center justify-between md:gap-x-20'>
+				<div className='  md:max-w-[1000px] '>
+					<h3 className='font-[700] py-3 text-3xl md:font-bold md:text-5xl text-center sm:text-left lg:text-[4.8em] capitalize '>
+						crafting digital excellence. transforming your vision
+						with{' '}
+						<span className='text-primary '>
+							{' '}
+							expertise solutions.
+						</span>
 					</h3>
-					<h6 className=' hidden font-medium py-2 text-[17px] lg:text-[2.5em] sm:block text-lightblack'>
-						Empowering business with cutting-edge technology
+					<h6 className=' hidden font-medium py-2 text-[17px] lg:text-[1.5em] leading-snug sm:block text-lightblack'>
+						Empowering businesses with custom web and mobile app
+						development.
 					</h6>
 					<p className='text-lightblack text-sm hidden md:text-base md:block '>
-						At webmekanic, we specialize in creating custom web and
-						mobile applications tailored to business needs. Discover
-						how our solutions can elevate your digital presence.
+						At WebMekanic, we specialize in UI/UX design, web
+						development, and mobile app solutions tailored to your
+						unique business needs. Elevate your digital presence
+						with high-performance, user-centric applications
+						designed to drive growth and engagement.
 					</p>
 
 					{/* <Link to={'/contact'}>
@@ -71,7 +158,6 @@ const HomePage = () => {
 						}
 					/>
 				</Link>
-			
 			</div>
 			<motion.div
 				initial={{ translateX: -200 }}
@@ -86,7 +172,7 @@ const HomePage = () => {
 			<div className='flex flex-col items-center px-5 md:px-20  gap-10 py-20'>
 				<div className=' '>
 					<h3 className='font-bold text-3xl text-center '>
-						We build for the Future
+						Building Future-Ready Digital Solutions
 					</h3>
 					<p className='text-lightblack text-base md:text-sm py-4 max-w-[400px] text-center'>
 						At webmekanic, we are dedicated to creating
@@ -112,15 +198,17 @@ const HomePage = () => {
 						</motion.button>
 						<div>
 							<h4 className='capitalize text-black font-medium text-center text-xl pb-2'>
-								innovative solutions
+								Digital Solutions for Business Growth
 							</h4>
 							<p className='text-lightblack text-center'>
-								Our team leverages the latest technologies and
-								industry best practices to deliver cutting-edge
-								applications. From Ai-driven features to
-								advanced data analytics, we ensure our solutions
-								are at the forefront of technological
-								advancements.
+								At WebMekanic, we harness the power of AI-driven
+								technology, advanced data analytics, and
+								industry best practices to develop
+								high-performance web and mobile applications.
+								Our solutions are designed to enhance
+								efficiency, scalability, and user engagement,
+								keeping your business ahead in the digital
+								landscape.
 							</p>
 						</div>
 					</motion.div>
@@ -142,15 +230,16 @@ const HomePage = () => {
 						</motion.button>
 						<div>
 							<h4 className='capitalize text-center font-medium text-black text-xl pb-2'>
-								sustainable development
+								Future-Ready Development
 							</h4>
 							<p className='text-lightblack text-center'>
-								We prioritize sustainability in our development
-								processes, creating applications that are not
-								only efficient and robust but also
-								environmentally friendly. Our commitment to
-								sustainable practices ensures that our solutions
-								contribute positively to the digital ecosystem
+								At WebMekanic, we integrate eco-friendly,
+								energy-efficient coding practices to build
+								high-performance, scalable applications. Our
+								commitment to sustainable software development
+								ensures that our solutions are not only robust
+								and efficient but also contribute positively to
+								the digital and environmental ecosystem.
 							</p>
 						</div>
 					</motion.div>
@@ -175,7 +264,7 @@ const HomePage = () => {
 							initial={{ y: 0 }}
 							transition={{ duration: 1, easings: 'linear' }}
 							to={`/services#${service.title}`}
-							className='relative md:h-[300px] group tab:h-[350px] p-6 shadow-xl my-10 rounded-xl hover:bg-lightsecondary transition-all ease-in '
+							className='relative md:h-[350px] group tab:h-[400px] p-6  shadow-xl my-10 rounded-xl hover:bg-lightsecondary transition-all ease-in '
 						>
 							<button className='p-4 my-4 rounded-xl  bg-lightsecondary group-hover:bg-white'>
 								<img
@@ -188,7 +277,15 @@ const HomePage = () => {
 							<p className='text-lightblack text-sm'>
 								{service.description}
 							</p>
-							<Link to={'/services'} className='group-hover:flex items-center gap-3 transition-all duration-150 ease-in text-sm text-primary md:absolute pt-4 md:pt-0 bottom-10 capitalize hidden  '>learn more <span><FaArrowRight size={10}/></span></Link>
+							<Link
+								to={'/services'}
+								className='flex md:group-hover:flex  items-center gap-3 transition-all duration-150 ease-in text-sm text-primary md:absolute pt-4 md:pt-0 bottom-8 capitalize md:hidden  '
+							>
+								learn more{' '}
+								<span>
+									<FaArrowRight size={10} />
+								</span>
+							</Link>
 						</motion.div>
 					))}
 				</div>
@@ -200,8 +297,8 @@ const HomePage = () => {
 						our portfolio
 					</h2>
 					<p className='text-lightblack'>
-						Take a look at some of the innovative projects we’ve
-						delivered for our clients
+						Browse our portfolio to see examples of our work and how
+						we have created excellent websites and apps.
 					</p>
 				</div>
 				<div className='flex flex-col gap-16'>

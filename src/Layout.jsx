@@ -3,14 +3,17 @@ import Header from './components/Header'
 import { Outlet } from 'react-router-dom'
 import Footer from './components/Footer'
 import { motion } from 'framer-motion'
+import GoogleTranslate from './components/GoogleTranslate'
 const Layout = () => {
   return (
 		<div className='mx-auto overflow-hidden max-w-[1440px] flex flex-col items-center'>
 			<Header />
+			<GoogleTranslate />
 			<motion.div
 				initial={{ scaleX: 0 }}
 				animate={{ scaleX: 1 }}
 			>
+
 				<Outlet />
 			</motion.div>
 

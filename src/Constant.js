@@ -10,29 +10,29 @@ export const service = [
 		id: 1,
 		title: 'UI/UX Design',
 		description:
-			'Immerse your users in captivating digital experiences with our expertly crafted interfaces curated from detailed user research and  intuitive user journeys',
-        logo:design
+			'Deliver seamless, intuitive, and visually stunning digital experiences with our expertly crafted UI/UX design solutions. Backed by in-depth user research and optimized user journeys, we design interfaces that enhance engagement, boost conversions, and elevate brand identity.',
+		logo: design,
 	},
 	{
 		id: 2,
 		title: 'Web Development',
 		description:
-			'Crafting bespoke websites tailored to your unique needs, ensuring a seamless blend of aesthetics and functionality',
+			'We build high-performance websites customized to your unique business needs. Our bespoke web development solutions ensure a seamless blend of aesthetics, functionality, and scalability, delivering an exceptional user experience and business growth.',
 		logo: monitor,
 	},
 	{
 		id: 3,
 		title: 'Mobile Development',
 		description:
-			'From iOS to Android, we bring your app ideas to life with intuitive design and flawless performance across all devices',
-        logo:mobile
+			'From iOS to Android, we transform your ideas into intuitive, user-friendly mobile apps with cutting-edge design and flawless performance across all devices. Our custom app development ensures scalability, efficiency, and an exceptional user experience.',
+		logo: mobile,
 	},
 	{
 		id: 4,
 		title: 'Maintenance & Support',
 		description:
-			'Stay ahead of the curve with our proactive maintenance and dedicated support, ensuring your digital assets are always up-to-date and secure',
-        logo:support
+			'Stay ahead with our proactive maintenance and dedicated support services. We ensure your web and mobile applications remain secure, optimized, and up-to-date, delivering peak performance and seamless user experiences at all times.',
+		logo: support,
 	},
 ];
 

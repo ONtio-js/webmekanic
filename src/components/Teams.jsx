@@ -8,7 +8,9 @@ const Teams = () => {
 	return (
 		<div className='px-5 md:px-20 py-10 grid gap-y-20'>
 			<div className='flex flex-col items-center gap-5'>
-				<h3 className='font-bold text-3xl capitalize py-'>our Leadership</h3>
+				<h3 className='font-bold text-3xl capitalize py-'>
+					Our Visionary Leadership
+				</h3>
 				<p className='text-center text-balance text-lightblack'>
 					Our team is a dynamic group of skilled professionals
 					dedicated to delivering exceptional web and mobile

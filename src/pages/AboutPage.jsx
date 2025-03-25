@@ -9,6 +9,8 @@ import { about, about1 } from '../assets/images';
 import { Link } from 'react-router-dom';
 import { values } from '../Constant';
 const AboutPage = () => {
+	document.title =
+		'About Us | Empowering Digital Success with Innovative Web Solutions';
 	return (
 		<>
 			<div className=' text-lightblack px-5 md:px-20 sm:px-0 w-full lg:flex items-end justify-between'>
@@ -83,7 +85,7 @@ const AboutPage = () => {
 			<div className='flex flex-col gap-10 px-5 md:px-20 py-20'>
 				<div>
 					<h2 className='font-semibold text-3xl py-10'>
-						our core values
+						Our core values
 					</h2>
 					<p className='max-w-[400px]'>
 						Have a question or want to start a project? Fill out the

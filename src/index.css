@@ -9,3 +9,10 @@
 .has-tooltip:hover .tooltip {
   @apply visible z-50;
 }
+
+div #google_translate_element .goog-te-gadget span {
+  display: none !important;
+}
+ .goog-te-banner-frame {
+  display: none !important;
+}

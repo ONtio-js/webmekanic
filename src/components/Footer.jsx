@@ -20,7 +20,10 @@ const Footer = () => {
 						Get in touch with us today to discuss your project
 						requirement and discover how we can help your business.
 					</p>
-					<Link to={'https://calendly.com/webmekanic-info/30min'} target='_blank'>
+					<Link
+						to={'https://calendly.com/webmekanic-info/30min'}
+						target='_blank'
+					>
 						<CtaButton
 							title={'Book a Free Consultatioon'}
 							style={'px-8 py-4 mt-3 rounded-md '}
@@ -73,25 +76,31 @@ const Footer = () => {
 							target='_blank'
 							href='https://www.instagram.com/webmekanic?igsh=MWVjNWp1dGpnbmU2ag%3D%3D&utm_source=qr'
 						>
-							<img src={whatsapp} alt="" />
+							<img
+								src={whatsapp}
+								alt=''
+							/>
 						</a>
 						<a
 							className='text-sm'
 							href='https://x.com/webmekanik'
 							target='_blank'
 						>
-							<img src={x} alt="" />
+							<img
+								src={x}
+								alt=''
+							/>
 						</a>
 					</div>
 				</div>
 				<div className='grid tab:col-span-2  sm:grid-cols-3 gap-10    items-start tab:justify-around tab:gap-x-16 '>
 					<ul className='flex flex-col gap-y-3'>
 						<h3 className='text-gray-700 font-bold text-lg  capitalize'>
-							company
+							contact
 						</h3>
 						<div>
-							<p>webMekanic</p>
-							<p>Lagos, Nigeria</p>
+							
+							<p>1 Muba Abiru Ebute, Lagos Nigeria</p>
 						</div>
 						<li className='flex items-center gap-x-2 '>
 							<MdEmail size={20} />
@@ -140,12 +149,12 @@ const Footer = () => {
 			</div>
 			<div className='flex items-center justify-center pt-10 md:pt-20 opacity-5 pb-48'>
 				<Link to={'/'}>
-									<img
-										src={webMekanic}
-										alt='webmekanic'
-										className='w-full'
-									/>
-								</Link>
+					<img
+						src={webMekanic}
+						alt='webmekanic'
+						className='w-full'
+					/>
+				</Link>
 			</div>
 		</footer>
 	);
