@@ -8,7 +8,7 @@ const Layout = () => {
   return (
 		<div className='mx-auto overflow-hidden max-w-[1440px] flex flex-col items-center'>
 			<Header />
-			<GoogleTranslate />
+			{/* <GoogleTranslate /> */}
 			<motion.div
 				initial={{ scaleX: 0 }}
 				animate={{ scaleX: 1 }}

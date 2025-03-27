@@ -1,14 +1,22 @@
 import React from 'react';
 import { webMekanic } from '../assets/logo';
-import { FaFacebook, FaLinkedinIn, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaPhoneAlt } from 'react-icons/fa';
 import { PiInstagramLogoFill } from 'react-icons/pi';
-import { RiTwitterXFill } from 'react-icons/ri';
+
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { cta } from '../assets/images';
 import CtaButton from './CtaButton';
 import { whatsapp, x } from '../assets/icon';
+import LanguageSelector from './GoogleTranslate';
 const Footer = () => {
+	const languages = [
+		{ code: 'en', label: 'English' },
+		{ code: 'fr', label: 'French' },
+		{ code: 'es', label: 'Spanish' },
+		{ code: 'de', label: 'German' },
+		{ code: 'zh', label: 'Chinese' },
+	];
 	return (
 		<footer className=' md:px-20'>
 			<div className='mx-5 md:mx-auto  rounded-2xl max-w-[1100px] px-8  py-10 mb-32 grid sm:grid-cols-2 gap-5 items-start md:items-center bg-lightsecondary'>
@@ -99,7 +107,6 @@ const Footer = () => {
 							contact
 						</h3>
 						<div>
-							
 							<p>1 Muba Abiru Ebute, Lagos Nigeria</p>
 						</div>
 						<li className='flex items-center gap-x-2 '>
@@ -142,10 +149,13 @@ const Footer = () => {
 			</div>
 			<div className='px-5  w-full landscapeMobile:mt-2  border-gray  text-lightblack'>
 				<hr className='bg-lightgray block border-black/20 border-[1px] ' />
-				<p className='text-sm sm:text-base py-10'>
-					All rights reserved. &copy;{new Date().getFullYear()}{' '}
-					webMekanic
-				</p>
+				<div className='flex flex-col md:flex-row items-center justify-between '>
+					<p className='text-sm sm:text-base py-10'>
+						All rights reserved. &copy;{new Date().getFullYear()}{' '}
+						webMekanic
+					</p>
+					<LanguageSelector />
+				</div>
 			</div>
 			<div className='flex items-center justify-center pt-10 md:pt-20 opacity-5 pb-48'>
 				<Link to={'/'}>

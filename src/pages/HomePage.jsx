@@ -257,7 +257,7 @@ custom software development, web development, mobile app development, business s
 						we're here to guide you every step of the way.
 					</p>
 				</div>
-				<div className='grid grid-cols-1 sm:grid-cols-2   lg:grid-cols-4 items-center  gap-x-10 '>
+				<div className='grid grid-cols-1 md:grid-cols-2   lg:grid-cols-4 items-center  gap-x-10 '>
 					{service.map((service) => (
 						<motion.div
 							whileInView={{ y: [100, 50, 0] }}

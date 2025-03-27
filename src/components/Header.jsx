@@ -7,12 +7,19 @@ import { FaFacebook, FaLinkedinIn } from 'react-icons/fa';
 import { PiInstagramLogoFill } from 'react-icons/pi';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { motion, useScroll } from 'framer-motion';
+import LanguageSelector from './GoogleTranslate';
 const Header = () => {
 	const [open, setOpen] = useState(false);
 	const { pathname } = useLocation();
 	const [rotate,setRotate] = useState(false);
 	const { scrollYProgress } = useScroll();
-
+	 const languages = [
+			{ code: 'en', label: 'English' },
+			{ code: 'fr', label: 'French' },
+			{ code: 'es', label: 'Spanish' },
+			{ code: 'de', label: 'German' },
+			{ code: 'zh', label: 'Chinese' },
+		];
 	
 	return (
 		<>
@@ -26,7 +33,7 @@ const Header = () => {
 					/>
 				</Link>
 				<div
-					className='md:hidden'
+					className='lg:hidden'
 					onClick={() => {
 						setOpen((prev) => !prev);
 					}}
@@ -41,7 +48,7 @@ const Header = () => {
 					/>
 				</div>
 
-				<nav className='hidden md:block'>
+				<nav className='hidden lg:block'>
 					<ul className='flex items-center justify-around gap-x-3  font-[400]'>
 						<li className='group px-3 py-1 rounded-md overflow-hidden capitalize'>
 							<Link to={'/'}>Home</Link>
@@ -88,6 +95,7 @@ const Header = () => {
 								Book a Free Consultation
 							</Link>
 						</li>
+						<LanguageSelector />
 					</ul>
 				</nav>
 				<Navbar
