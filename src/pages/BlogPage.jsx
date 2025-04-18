@@ -156,7 +156,7 @@ const BlogPage = () => {
 				initial={{ opacity: 0, y: 100 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className='px-5 md:px-10 lg:px-20 mb-40 mt-20 md:mt-0'
+				className='px-10 lg:px-20 mb-40 mt-20 md:mt-0 w-[410px] sm:w-full'
 			>
 				{/* Love emoji animation */}
 				<AnimatePresence>
@@ -164,15 +164,16 @@ const BlogPage = () => {
 						<motion.div
 							initial={{ opacity: 0, scale: 0.5, y: 0 }}
 							animate={{
-								opacity: [0, 1, 0],
-								scale: [0.5, 1.5, 0.5],
-								y: [0, -100, -200],
-								x: [0, 10, -10],
+								opacity: [0, 0.3, 0.7, 1, 0.7, 0.3, 0],
+								scale: [0.5, 0.8, 1.2, 1.5, 1.2, 0.8, 0.5],
+								y: [0, -30, -60, -90, -120, -150, -180],
+								x: [0, 5, -5, 5, 10, -10, -5, 5, 0],
 							}}
 							transition={{
-								duration: 2,
-								times: [0, 0.5, 1],
-								ease: 'easeInOut',
+								duration: 1,
+								times: [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1],
+								ease: 'easeIn',
+								repeat: 0,
 							}}
 							style={{
 								position: 'fixed',
@@ -191,7 +192,7 @@ const BlogPage = () => {
 
 				<Link
 					to='/blogs'
-					className='flex items-center justify-center gap-3 font-medium bg-lightgray max-w-[100px] py-2 rounded-full my-10'
+					className='flex items-center justify-center gap-3 font-medium bg-lightgray max-w-[100px] py-2 rounded-full my-3'
 				>
 					<FaArrowLeft size={16} /> Back
 				</Link>
@@ -210,7 +211,7 @@ const BlogPage = () => {
 					className='text-lg text-lightblack leading-loose prose prose-lg max-w-none'
 					dangerouslySetInnerHTML={{ __html: blog.detail_content }}
 				/>
-				<div className='flex items-center gap-5 mt-10 text-lightblack text-lg'>
+				<div className='w-full flex justify-between items-center gap-5 mt-10 text-lightblack text-lg'>
 					<div className='flex items-center justify-between '>
 						<button
 							onClick={() => handleLike(blog.title)}
@@ -226,7 +227,7 @@ const BlogPage = () => {
 							</span>
 						</button>
 					</div>
-					<div className='flex items-center gap-3 capitalize'>
+					<div className='flex items-center md:gap-3 gap-2 capitalize'>
 						<button
 							onClick={handleNativeShare}
 							className='flex items-center gap-2 hover:text-primary transition-colors'
@@ -235,7 +236,7 @@ const BlogPage = () => {
 							<p>share</p>
 							<BsShare size={20} />
 						</button>
-						<div className='flex items-center gap-4'>
+						<div className='flex items-center md:gap-4 gap-2'>
 							<button
 								onClick={(e) =>
 									handleSocialShare('facebook', e)
@@ -283,7 +284,7 @@ const BlogPage = () => {
 								onClick={(e) =>
 									handleSocialShare('pinterest', e)
 								}
-								className='text-[#E60023] hover:opacity-80 transition-opacity'
+								className='text-[#E60023] hidden md:block hover:opacity-80 transition-opacity'
 								title='Share on Pinterest'
 							>
 								<FaPinterest size={20} />
@@ -292,7 +293,7 @@ const BlogPage = () => {
 								onClick={(e) =>
 									handleSocialShare('instagram', e)
 								}
-								className='text-[#E4405F] hover:opacity-80 transition-opacity'
+								className='text-[#E4405F] hidden md:block hover:opacity-80 transition-opacity'
 								title='Copy link for Instagram'
 							>
 								<FaInstagram size={20} />

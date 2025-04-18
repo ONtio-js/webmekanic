@@ -139,7 +139,7 @@ const Navbar = ({ open, setOpen }) => {
 				>
 					<img
 						src={
-							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic_spoflu.svg'
+							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic.png'
 						}
 						alt='webmekanic'
 						className='w-32 -mt-4'
