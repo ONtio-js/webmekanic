@@ -3,11 +3,28 @@ import {  work1, work2, work3 } from '../assets/RecentsWorks'
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import CtaButton from '../components/CtaButton';
+import { Helmet } from 'react-helmet';
 const PortfolioPage = () => {
 	document.title =
 		'Our Portfolio | Showcasing Creative and Impactful Digital Solutions';
   return (
-		<>
+	<>
+	<Helmet>
+		<title>Our Portfolio | Showcasing Creative and Impactful Digital Solutions</title>
+		<meta name="description" content="Explore our portfolio of creative and impactful digital solutions that drive engagement and business growth." />
+		<meta name="keywords" content="Portfolio, Creative Solutions, Impactful Digital Solutions, Web Development, Mobile App Development, WebMekanic" />
+		<meta name="author" content="WebMekanic" />
+		<meta name="robots" content="index, follow" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="7 days" />
+		<meta name="rating" content="General" />
+	</Helmet>
+	<motion.div
+		initial={{ opacity: 0, y: 100 }}
+		animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 1 }}
+		>
 			<div className='mt-16 md:mt-0  py-10 md:py-32 flex flex-col items-center px-5 sm:px-0 w-full'>
 				<h3 className='text-3xl text-center  capitalize font-bold py-3 text-black max-w-[600px]'>
 					Transforming Ideas into World-Class Digital Experiences
@@ -159,6 +176,7 @@ const PortfolioPage = () => {
 					</motion.div>
 				</div>
 			</div>
+		</motion.div>
 		</>
   );
 }

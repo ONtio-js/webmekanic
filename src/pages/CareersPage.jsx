@@ -1,11 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet';
 const Careers = () => {
-  return (
-		<div className='mt-20 md:mt-10  px-5 md:px-10 lg:px-20 w-full '>
+	return (
+		<>
+		<Helmet>
+			<title>Careers | WebMekanic</title>
+			<meta name="description" content="Join our dynamic team and contribute to our mission of creating exceptional digital experiences. Explore open positions and apply today!" />
+			<meta name="keywords" content="Careers, WebMekanic, Open Positions, Job Opportunities, Teamwork, Digital Solutions, Web Development, Mobile App Development" />
+			<meta name="author" content="WebMekanic" />
+			<meta name="robots" content="index, follow" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="language" content="English" />
+		</Helmet>
+		<motion.div
+			initial={{ opacity: 0, y: 100 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 1 }}
+			className='mt-20 md:mt-10  px-5 md:px-10 lg:px-20 w-full '
+		>
 			<div
-				className='rounded-2xl w-full h-[300px] md:h-[calc(100vh-300px)] border p-5 md:p-10 text-white flex flex-col justify-end'
+				className='rounded-2xl w-full h-[300px] md:h-[500px] border p-5 md:p-10 text-white flex flex-col justify-end'
 				style={{
 					background:
 						'url("https://res.cloudinary.com/dm2pa4nll/webmekanic/career.png")',
@@ -84,7 +100,8 @@ const Careers = () => {
 					</div>
 				</div>
 			</section>
-		</div>
+		</motion.div>
+		</>
   );
 }
 

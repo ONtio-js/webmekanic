@@ -10,45 +10,45 @@ import TermsPage from './pages/TermsPage';
 import BlogsPage from './pages/BlogsPage';
 import BlogPage from './pages/BlogPage';
 import Careers from './pages/CareersPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { BlogProvider } from './context/blog/BlogContext';
 
 function App() {
 	return (
 		<BlogProvider>
-		<Routes>
-			<Route
-				path='/'
-				element={<Layout />}
-			>
+			<Routes>
 				<Route
-					index
-					element={<HomePage />}
-				/>
-				<Route
-					path='/about'
-					element={<AboutPage />}
-				/>
-				<Route
-					path='https://calendly.com/webmekanic-info/30min'
-					element={<ContactPage />}
-				/>
-				<Route
-					path='/services'
-					element={<ServicePage />}
-				/>
-				<Route
-					path='/portfolio'
-					element={<PortfolioPage />}
-				/>
-				<Route
-					path='/privacy'
-					element={<PrivacyPage />}
-				/>
-				<Route
-					path='/terms'
-					element={<TermsPage />}
-				/>
-				
+					path='/'
+					element={<Layout />}
+				>
+					<Route
+						index
+						element={<HomePage />}
+					/>
+					<Route
+						path='/about'
+						element={<AboutPage />}
+					/>
+					<Route
+						path='https://calendly.com/webmekanic-info/30min'
+						element={<ContactPage />}
+					/>
+					<Route
+						path='/services'
+						element={<ServicePage />}
+					/>
+					<Route
+						path='/portfolio'
+						element={<PortfolioPage />}
+					/>
+					<Route
+						path='/privacy'
+						element={<PrivacyPage />}
+					/>
+					<Route
+						path='/terms'
+						element={<TermsPage />}
+					/>
 					<Route
 						path='/blogs'
 						element={<BlogsPage />}
@@ -57,13 +57,16 @@ function App() {
 						path='/blogs/:slug'
 						element={<BlogPage />}
 					/>
-			
-				<Route
-					path='/careers'
-					element={<Careers />}
-				/>
-			</Route>
-		</Routes>
+					<Route
+						path='/careers'
+						element={<Careers />}
+					/>
+					<Route
+						path='*'
+						element={<NotFoundPage />}
+					/>
+				</Route>
+			</Routes>
 		</BlogProvider>
 	);
 }

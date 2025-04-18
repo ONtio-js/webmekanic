@@ -8,11 +8,28 @@ import { motion } from 'framer-motion';
 import { about, about1 } from '../assets/images';
 import { Link } from 'react-router-dom';
 import { values } from '../Constant';
+import { Helmet } from 'react-helmet';
 const AboutPage = () => {
-	document.title =
-		'About Us | Empowering Digital Success with Innovative Web Solutions';
+	
 	return (
 		<>
+		<Helmet>
+			<title>About Us | Empowering Digital Success with Innovative Web Solutions</title>
+			<meta name="description" content="Learn about our dedicated team and our commitment to delivering exceptional digital solutions that align with your business goals." />
+			<meta name="keywords" content="About Us, Dedicated Team, Exceptional Digital Solutions, Business Goals, Custom Web Solutions, Mobile App Development, Website Maintenance" />
+			<meta name="author" content="WebMekanic" />
+			<meta name="robots" content="index, follow" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="language" content="English" />
+			<meta name="revisit-after" content="7 days" />
+			<meta name="rating" content="General" />
+			
+		</Helmet>	
+		<motion.div
+			initial={{ opacity: 0, y: 100 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 1 }}
+		>
 			<div className=' text-lightblack px-5 md:px-20 sm:px-0 w-full lg:flex items-end justify-between'>
 				<div className='pt-20'>
 					<h3 className='text-xl text-left  capitalize font-bold py-3 text-primary'>
@@ -115,6 +132,7 @@ const AboutPage = () => {
 			<div className='mb-32'>
 				<Teams />
 			</div>
+			</motion.div>
 		</>
 	);
 };

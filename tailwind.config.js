@@ -11,24 +11,27 @@ export default {
 		// 	desktop:'1440px'
 		// },
 		extend: {
-			screens:{
-				xs:'550px',
-				tab:'834px'
+			screens: {
+				xs: '550px',
+				tab: '834px',
 			},
 			colors: {
-				primary: '#1300FF',
-				lightprimary: '#d2f8ff',
-				secondary: '#014EFF',
+				primary: '#2563eb',
+				secondary: '#1e40af',
+				lightprimary: '#dbeafe',
+				lightsecondary: '#f1f5f9',
 				black: '#1A1A1A',
 				gray: '#CBCBCB',
 				lightgray: '#ECECEC',
-				lightblack: '#535252',
-				lightsecondary: '#F7F6FF',
+				lightblack: '#64748b',
 				backgroundColor: '#ffffff',
 				white: '#ffffff',
 			},
 			backgroundImage: {
 				serviceBg: "url('/src/assets/bg/servicebg.svg')",
+			},
+			fontFamily: {
+				comic: ['"Comic Neue"', 'cursive'],
 			},
 		},
 	},

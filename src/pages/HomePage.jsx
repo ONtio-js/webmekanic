@@ -96,7 +96,12 @@ custom software development, web development, mobile app development, business s
     }
     `}</script>
 			</Helmet>
-			<div className='mt-20 md:mt-10 px-5 md:px-20   flex flex-col sm:flex-row sm:items-center justify-between md:gap-x-20'>
+			<motion.div
+				initial={{ opacity: 0, y: 100 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 1 }}
+				className='mt-20 md:mt-10 px-5 md:px-20   flex flex-col sm:flex-row sm:items-center justify-between md:gap-x-20'
+			>
 				<div className='  md:max-w-[1000px] '>
 					<h3 className='font-[700] py-3 text-3xl md:font-bold md:text-5xl text-center sm:text-left lg:text-[4.8em] capitalize '>
 						crafting digital excellence. transforming your vision
@@ -134,7 +139,7 @@ custom software development, web development, mobile app development, business s
 						srcset=''
 					/>
 				</div>
-			</div>
+			</motion.div>
 			<p className='p-5 text-lightblack md:text-sm md:hidden '>
 				At webmekanic, we specialize in creating custom web and mobile
 				applications tailored to business needs. Discover how our

@@ -24,6 +24,8 @@ const BlogPage = () => {
 	const [showShareTooltip, setShowShareTooltip] = useState(false);
 	const [showLoveEmoji, setShowLoveEmoji] = useState(false);
 	const [emojiPosition, setEmojiPosition] = useState({ x: 0, y: 0 });
+	const [showLikeAnimation, setShowLikeAnimation] = useState(false);
+	const [likePosition, setLikePosition] = useState({ x: 0, y: 0 });
 	const location = useLocation();
 	const slug = location.pathname.split('/')[2];
 	const {
@@ -107,6 +109,15 @@ const BlogPage = () => {
 		window.open(shareUrl, '_blank', 'width=600,height=400');
 	};
 
+	const handleLikeWithAnimation = (title, event) => {
+		// Show like animation at click position
+		setLikePosition({ x: event.clientX, y: event.clientY });
+		setShowLikeAnimation(true);
+
+		// Call the original handleLike function
+		handleLike(title);
+	};
+
 	if (loading) {
 		return (
 			<div className='flex justify-center items-center h-[500px]'>
@@ -151,12 +162,22 @@ const BlogPage = () => {
 					name='description'
 					content={`${blog.short_description}`}
 				/>
+				<meta
+					name='keywords'
+					content={`${blog.title}, ${blog.short_description}, ${blog.detail_content}`}
+				/>
+				<meta name="author" content="WebMekanic" />
+				<meta name="robots" content="index, follow" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<meta name="language" content="English" />
+				<meta name="revisit-after" content="7 days" />
+				<meta name="rating" content="General" />	
 			</Helmet>
 			<motion.div
 				initial={{ opacity: 0, y: 100 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className='px-10 lg:px-20 mb-40 mt-20 md:mt-0 w-[410px] sm:w-full'
+				className='px-10 lg:px-20 mb-40 mt-20 md:mt-0 min-w-[410px] sm:w-full'
 			>
 				{/* Love emoji animation */}
 				<AnimatePresence>
@@ -191,7 +212,7 @@ const BlogPage = () => {
 				</AnimatePresence>
 
 				<Link
-					to='/blogs'
+					onClick={() => window.history.back()}
 					className='flex items-center justify-center gap-3 font-medium bg-lightgray max-w-[100px] py-2 rounded-full my-3'
 				>
 					<FaArrowLeft size={16} /> Back
@@ -214,11 +235,13 @@ const BlogPage = () => {
 				<div className='w-full flex justify-between items-center gap-5 mt-10 text-lightblack text-lg'>
 					<div className='flex items-center justify-between '>
 						<button
-							onClick={() => handleLike(blog.title)}
+							onClick={(e) =>
+								handleLikeWithAnimation(blog.title, e)
+							}
 							className={`flex items-center gap-1 text-sm ${
 								likedPosts.has(blog.title)
-									? 'text-primary	'
-									: 'text-gray-500 hover:text-primary'
+									? 'text-red-500	'
+									: 'text-gray-500 hover:text-red-500'
 							} transition-colors`}
 						>
 							<FaHeart size={20} />
@@ -227,6 +250,41 @@ const BlogPage = () => {
 							</span>
 						</button>
 					</div>
+
+					{/* Like animation */}
+					<AnimatePresence>
+						{showLikeAnimation && (
+							<motion.div
+								initial={{ opacity: 0, scale: 0.5, y: 0 }}
+								animate={{
+									opacity: [0, 0.3, 0.7, 1, 0.7, 0.3, 0],
+									scale: [0.5, 0.8, 1.2, 1.5, 1.2, 0.8, 0.5],
+									y: [0, -30, -60, -90, -120, -150, -180],
+									x: [0, 5, -5, 5, 10, -10, -5, 5, 0],
+								}}
+								transition={{
+									duration: 1,
+									times: [0, 0.2, 0.4, 0.5, 0.6, 0.8, 1],
+									ease: 'easeIn',
+									repeat: 0,
+								}}
+								style={{
+									position: 'fixed',
+									left: likePosition.x,
+									top: likePosition.y,
+									zIndex: 1000,
+									pointerEvents: 'none',
+								}}
+								className='text-4xl'
+								onAnimationComplete={() =>
+									setShowLikeAnimation(false)
+								}
+							>
+								❤️
+							</motion.div>
+						)}
+					</AnimatePresence>
+
 					<div className='flex items-center md:gap-3 gap-2 capitalize'>
 						<button
 							onClick={handleNativeShare}

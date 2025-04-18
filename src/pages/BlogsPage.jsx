@@ -5,7 +5,7 @@ import Loader from '../components/Loader';
 import { motion } from 'framer-motion';
 import { formatDate } from '../utils/Date';
 import { useBlog } from '../context/blog/BlogContext';
-
+import { Helmet } from 'react-helmet';
 const BlogsPage = () => {
 	const { blogs, loading, error, likedPosts, handleLike, getFeaturedBlog } =
 		useBlog();
@@ -34,6 +34,18 @@ const BlogsPage = () => {
 	}
 
 	return (
+		<>
+		<Helmet>
+			<title>Blogs | WebMekanic</title>
+			<meta name="description" content="Explore our latest blog posts and stay updated with the latest trends in web development and digital marketing." />
+			<meta name="keywords" content="Blogs, Web Development, Digital Marketing, Latest Trends, WebMekanic" />
+			<meta name="author" content="WebMekanic" />
+			<meta name="robots" content="index, follow" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="language" content="English" />
+			<meta name="revisit-after" content="7 days" />
+			<meta name="rating" content="General" />
+		</Helmet>
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
@@ -45,7 +57,7 @@ const BlogsPage = () => {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5, delay: 0.2 }}
-					className='rounded-3xl w-full h-[200px] md:h-[500px] border md:p-10 text-white flex flex-col justify-end relative overflow-hidden'
+					className='rounded-md w-full h-[200px] md:h-[500px] border md:p-10 text-white flex flex-col justify-end relative overflow-hidden'
 				>
 					<div
 						className='absolute inset-0 bg-cover bg-center bg-no-repeat '
@@ -54,7 +66,7 @@ const BlogsPage = () => {
 						}}
 					/>
 					<div className='absolute inset-0 bg-black/50' />
-					<div className='relative z-10 p-5'>
+					<div className='relative  p-5'>
 						<div className='flex flex-col gap-2'>
 							<h3 className='md:text-2xl font-thin md:font-medium'>
 								Featured
@@ -167,6 +179,7 @@ const BlogsPage = () => {
 				)}
 			</section>
 		</motion.div>
+		</>
 	);
 };
 
