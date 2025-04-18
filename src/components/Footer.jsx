@@ -46,7 +46,7 @@ const Footer = () => {
 					<Link to='/'>
 						<img
 							src={
-								'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic_spoflu.svg'
+								'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic.png'
 							}
 							alt='logo'
 							width={160}

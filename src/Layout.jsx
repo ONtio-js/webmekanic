@@ -12,7 +12,7 @@ const Layout = () => {
 	}, [pathname]);
 
 	return (
-		<div className='mx-auto overflow-hidden max-w-[1440px] flex flex-col items-center'>
+		<div className='mx-auto overflow-hidden max-w-[1440px] flex flex-col items-center bg-white'>
 			<Header />
 			<div
 			
