@@ -72,7 +72,9 @@ const ServicePage = () => {
 					here to guide you every step of the way.
 				</p>
 				<img
-					src={group}
+					src={
+						'https://res.cloudinary.com/dm2pa4nll/webmekanic/group_ehfkhx.svg'
+					}
 					className='py-10 w-full'
 				/>
 			</div>
@@ -126,11 +128,7 @@ const ServicePage = () => {
 				<div className='px-5 md:px-20 pb-8 md:py-16  text-lightblack max-w-[1200px]'>
 					{/* ui/ux design start */}
 					<motion.div
-						className={`${
-							userInterface
-								? 'block  '
-								: 'hidden'
-						}`}
+						className={`${userInterface ? 'block  ' : 'hidden'}`}
 						id='ui/ux'
 						animate={{ translateY: userInterface ? 0 : 100 }}
 					>
@@ -141,7 +139,9 @@ const ServicePage = () => {
 						<div className='grid gap-10 pt-5 '>
 							<div>
 								<img
-									src={design}
+									src={
+										'https://res.cloudinary.com/dm2pa4nll/webmekanic/design_jvu6zs.svg'
+									}
 									alt='ui/ux_service_banner'
 									srcset=''
 									className='w-full'
@@ -216,11 +216,7 @@ const ServicePage = () => {
 					{/* ui/ux design end  */}
 					{/* web development start  */}
 					<motion.div
-						className={`${
-							customWebsite
-								? 'block'
-								: 'hidden'
-						}`}
+						className={`${customWebsite ? 'block' : 'hidden'}`}
 						animate={{ translateX: customWebsite ? 0 : -100 }}
 						id='website'
 					>
@@ -304,11 +300,7 @@ const ServicePage = () => {
 					{/* web development start  */}
 					{/* mobile app start  */}
 					<motion.div
-						className={`${
-							mobileApplication
-								? 'block '
-								: 'hidden'
-						}`}
+						className={`${mobileApplication ? 'block ' : 'hidden'}`}
 						id='mobileApp'
 						animate={{ translateX: mobileApplication ? 0 : 100 }}
 					>
@@ -394,9 +386,7 @@ const ServicePage = () => {
 					{/* maintenance service start  */}
 					<motion.div
 						className={`${
-							smaintenance
-								? 'block '
-								: 'hidden opacity-10'
+							smaintenance ? 'block ' : 'hidden opacity-10'
 						} transition-opacity opacity-100 delay-100 ease-in`}
 						id='maintenance'
 						animate={{ translateY: smaintenance ? 0 : 100 }}

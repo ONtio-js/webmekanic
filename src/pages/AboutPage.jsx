@@ -32,11 +32,13 @@ const AboutPage = () => {
 			</div>
 			<div className='flex flex-col items-center py-10 md:pb-20 md:my-10 mx-5 sm:mx-20 '>
 				<img
-					src={about}
+					src={
+						'https://res.cloudinary.com/dm2pa4nll/webmekanic/about_zi9yjn.png'
+					}
 					alt=''
 					className='mb-20 '
 				/>
-				<h3 className='font-bold text-2xl md:text-4xl text-lightblack capitalize py-4'>
+				<h3 className='font-bold text-2xl md:text-4xl text-lightblack capitalize py-4 pb-10'>
 					helping business grow
 				</h3>
 				<div className='px-5 md:px-20'>
@@ -75,7 +77,9 @@ const AboutPage = () => {
 				</motion.div>
 				<div className='flex-1 pt-10 md:pt-0'>
 					<img
-						src={about1}
+						src={
+							'https://res.cloudinary.com/dm2pa4nll/webmekanic/about1_o9h61i.png'
+						}
 						alt=''
 					/>
 				</div>
@@ -92,7 +96,7 @@ const AboutPage = () => {
 						form below and we'll get back to you shortly
 					</p>
 				</div>
-				<div className='grid sm:grid-cols-2 md:grid-cols-4 gap-10'>
+				<div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10'>
 					{values.map((value) => (
 						<div
 							className='max-w-[400px] bg-gray/20 transition-all duration-500 ease-in-out hover:translate-x-1 hover:bg-lightsecondary p-10 rounded-2xl'

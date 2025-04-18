@@ -1,8 +1,6 @@
 import React from 'react'
-import { dhome, dhome2, dhome4, ikoro, recent1, work1, work2 } from '../assets/RecentsWorks'
-import { IoArrowForwardOutline } from 'react-icons/io5';
+import {  work1, work2, work3 } from '../assets/RecentsWorks'
 import { motion } from 'framer-motion';
-import { recentWorks } from '../Constant';
 import { Link } from 'react-router-dom';
 import CtaButton from '../components/CtaButton';
 const PortfolioPage = () => {
@@ -39,6 +37,49 @@ const PortfolioPage = () => {
 						transition={{ duration: 1, easings: 'linear' }}
 						className=' text-lightblack grid grid-col-1 lg:grid-cols-2 items-center gap-10 lg:gap-20  bg-primary/5 rounded-2xl p-5 md:p-16 '
 					>
+						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
+							<img
+								src={
+									'https://res.cloudinary.com/dm2pa4nll/webmekanic/work3_sy50oy.png'
+								}
+								alt=''
+							/>
+						</div>
+						<div className='flex flex-col gap-3'>
+							<div className='flex items-center gap-2 sm:gap-5'>
+								<div className='bg-primary/30 px-3 py-1 rounded-full text-xs md:text-sm text-black'>
+									UI/UX Design
+								</div>
+								<div className='bg-primary/30 px-3 py-1 text-xs md:text-sm rounded-full text-black'>
+									Custom Web Development
+								</div>
+							</div>
+							<h2 className='font-bold text-black text-2xl'>
+								Grevego
+							</h2>
+							<p>
+								Grevego is a sustainable marketplace that
+								connects consumers with fresh, local produce
+								while minimizing environmental impact. They
+								offer personalized nutrition guidance powered by
+								artificial intelligence and ensure eco-friendly,
+								temperature-controlled delivery to promote
+								healthy living and reduce food waste.
+							</p>
+							<Link to={'https://test-beige-zeta-65.vercel.app/'}>
+								<CtaButton
+									title={'View Project'}
+									style={'px-8 py-2 rounded-md '}
+								/>
+							</Link>
+						</div>
+					</motion.div>
+					<motion.div
+						whileInView={{ y: [100, 50, 0] }}
+						initial={{ y: 0 }}
+						transition={{ duration: 1, easings: 'linear' }}
+						className=' text-lightblack grid grid-col-1 lg:grid-cols-2 items-center gap-10 lg:gap-20  bg-primary/5 rounded-2xl p-5 md:p-16 '
+					>
 						<div className='flex flex-col gap-3'>
 							<div className='flex items-center gap-2 sm:gap-5'>
 								<div className='bg-primary/30 px-3 py-1 rounded-full text-xs md:text-sm text-black'>
@@ -68,8 +109,11 @@ const PortfolioPage = () => {
 						</div>
 						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
-								src={work2}
+								src={
+									'https://res.cloudinary.com/dm2pa4nll/webmekanic/shxwbilsd9yqsw54p7ev.png'
+								}
 								alt=''
+								className='w-full'
 							/>
 						</div>
 					</motion.div>
@@ -81,7 +125,9 @@ const PortfolioPage = () => {
 					>
 						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
-								src={work1}
+								src={
+									'https://res.cloudinary.com/dm2pa4nll/webmekanic/work1_yk5z14.svg'
+								}
 								alt=''
 							/>
 						</div>

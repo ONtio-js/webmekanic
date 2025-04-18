@@ -10,9 +10,34 @@
   @apply visible z-50;
 }
 
-div #google_translate_element .goog-te-gadget span {
-  display: none !important;
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
 }
- .goog-te-banner-frame {
-  display: none !important;
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.text{
+   display: -webkit-box;
+  -webkit-line-clamp: 1;
+
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3em;
+  line-height: 1.8em;
+}
+.text-intro{
+   display: -webkit-box;
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+ 
+  line-height: 1.8em;
 }

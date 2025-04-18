@@ -28,7 +28,9 @@ const Testmonials = () => {
 						<div className='w-[20em] ml-3 sm:ml-0 bg-gradient-to-t from-lightprimary to-white rounded-full overflow-hidden '>
 							<img
 								className='mx-auto sm:mx-0'
-								src={testimony.imagesrc}
+								src={
+									'https://res.cloudinary.com/dm2pa4nll/webmekanic/testmony1_lj0ywp.svg'
+								}
 								alt='testmony_image'
 								srcset=''
 							/>

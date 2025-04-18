@@ -1,22 +1,14 @@
 import React from 'react';
-import { webMekanic } from '../assets/logo';
 import { FaFacebook, FaPhoneAlt } from 'react-icons/fa';
 import { PiInstagramLogoFill } from 'react-icons/pi';
 
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { cta } from '../assets/images';
 import CtaButton from './CtaButton';
 import { whatsapp, x } from '../assets/icon';
-import LanguageSelector from './GoogleTranslate';
+import { webMekanic } from '../assets/logo';
+
 const Footer = () => {
-	const languages = [
-		{ code: 'en', label: 'English' },
-		{ code: 'fr', label: 'French' },
-		{ code: 'es', label: 'Spanish' },
-		{ code: 'de', label: 'German' },
-		{ code: 'zh', label: 'Chinese' },
-	];
 	return (
 		<footer className=' md:px-20'>
 			<div className='mx-5 md:mx-auto  rounded-2xl max-w-[1100px] px-8  py-10 mb-32 grid sm:grid-cols-2 gap-5 items-start md:items-center bg-lightsecondary'>
@@ -40,7 +32,9 @@ const Footer = () => {
 				</div>
 				<div className='mt-10 sm:mt-0'>
 					<img
-						src={cta}
+						src={
+							'https://res.cloudinary.com/dm2pa4nll/webmekanic/teams_csulur.svg'
+						}
 						alt='cta_image'
 						srcset=''
 						className='md:w-[500px] lg:w-full '
@@ -51,7 +45,9 @@ const Footer = () => {
 				<div className=' '>
 					<Link to='/'>
 						<img
-							src={webMekanic}
+							src={
+								'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic_spoflu.svg'
+							}
 							alt='logo'
 							width={160}
 						/>
@@ -134,9 +130,16 @@ const Footer = () => {
 							quick links
 						</h3>
 						<Link to={'/about'}>about us</Link>
-						<Link to={'/contact'}>contact us</Link>
+						<Link
+							to={'https://calendly.com/webmekanic-info/30min'}
+							target='_blank'
+						>
+							contact us
+						</Link>
 						<Link to={'/portfolio'}>Recent works</Link>
 						<Link to={'/services'}>Our services</Link>
+						<Link to={'/blogs'}>Blogs</Link>
+						<Link to={'/careers'}>Careers</Link>
 					</ul>
 					<ul className='flex flex-col gap-y-3'>
 						<h3 className='text-gray-700 font-bold capitalize text-lg'>
@@ -154,7 +157,6 @@ const Footer = () => {
 						All rights reserved. &copy;{new Date().getFullYear()}{' '}
 						webMekanic
 					</p>
-					<LanguageSelector />
 				</div>
 			</div>
 			<div className='flex items-center justify-center pt-10 md:pt-20 opacity-5 pb-48'>

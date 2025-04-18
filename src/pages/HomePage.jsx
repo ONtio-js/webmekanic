@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import CtaButton from '../components/CtaButton';
 import {
-	cta,
+
 	heroImage,
-	project1,
-	project2,
-	testmony1,
+	
 } from '../assets/images';
 import { LiaLightbulb } from 'react-icons/lia';
 import '../App.css';
@@ -15,12 +13,6 @@ import Approach from '../components/Approach';
 import Teams from '../components/Teams';
 import { useNavigate, Link } from 'react-router-dom';
 import {
-	dhome,
-	dhome2,
-	dhome3,
-	dhome4,
-	ikoro,
-	spacee,
 	work1,
 	work2,
 } from '../assets/RecentsWorks';
@@ -38,8 +30,7 @@ const HomePage = () => {
 		<>
 			<Helmet>
 				<title>
-					Welcome to webMekanic | Crafting Exceptional Digital
-					Experiences
+					webMekanic - Custom Software Development Company
 				</title>
 				<meta
 					name='description'
@@ -170,7 +161,7 @@ custom software development, web development, mobile app development, business s
 				<Company />
 			</motion.div>
 			<div className='flex flex-col items-center px-5 md:px-20  gap-10 py-20'>
-				<div className=' '>
+				<div className='flex flex-col items-center '>
 					<h3 className='font-bold text-3xl text-center '>
 						Building Future-Ready Digital Solutions
 					</h3>
@@ -303,7 +294,7 @@ custom software development, web development, mobile app development, business s
 				</div>
 				<div className='flex flex-col gap-16'>
 					<div className=' text-lightblack grid grid-col-1 lg:grid-cols-2 items-center gap-10 lg:gap-20  bg-primary/5 rounded-2xl p-5 md:p-16 '>
-						<div className='flex flex-col gap-4'>
+						<div className='flex flex-col gap-3'>
 							<div className='flex items-center gap-2 sm:gap-5'>
 								<div className='bg-primary/30 px-3 py-1 rounded-full text-xs md:text-sm text-black'>
 									UI/UX Design
@@ -313,26 +304,29 @@ custom software development, web development, mobile app development, business s
 								</div>
 							</div>
 							<h2 className='font-bold text-black text-2xl'>
-								MyScooty
+								Grevego
 							</h2>
 							<p>
-								MyScooty is a Nigerian delivery platform
-								offering door-to-door services for food,
-								groceries, medical supplies, and parcels, with a
-								user-friendly app and real-time tracking. It
-								supports local businesses and provides dedicated
-								delivery solutions for companies.
+								Grevego is a sustainable marketplace that
+								connects consumers with fresh, local produce
+								while minimizing environmental impact. They
+								offer personalized nutrition guidance powered by
+								artificial intelligence and ensure eco-friendly,
+								temperature-controlled delivery to promote
+								healthy living and reduce food waste.
 							</p>
-							<Link to={'https://myscooty.ng/'}>
+							<Link to={'https://test-beige-zeta-65.vercel.app/'}>
 								<CtaButton
 									title={'View Project'}
-									style={'px-8 py-2 rounded-md mt-10 '}
+									style={'px-8 py-2 rounded-md '}
 								/>
 							</Link>
 						</div>
-						<div className='  justify-center bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
+						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
-								src={work2}
+								src={
+									'https://res.cloudinary.com/dm2pa4nll/webmekanic/work3_sy50oy.png'
+								}
 								alt=''
 							/>
 						</div>

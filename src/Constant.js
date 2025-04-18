@@ -1,10 +1,11 @@
 import { HiOutlineComputerDesktop } from 'react-icons/hi2';
 import { design, mobile, monitor, support } from './assets/icon';
-import { mike, precious, theo } from './assets/team';
-import { ikoro, restokonet, spacee, work } from './assets/RecentsWorks';
+
+
 import { testmony1 } from './assets/images';
-
-
+export const BASE_API_URL = 'https://webmekanic-backend.onrender.com/api/blog/posts/';
+export const GOOGLE_SHEET_URL =
+	'https://script.google.com/macros/s/AKfycbztmoaej_JNWyaIw91m9CfQOIxCe-Nanc53l396GDYFe1ODTijH4WsQJlV-IF9AIqKXUw/exec';
 export const service = [
 	{
 		id: 1,
@@ -83,7 +84,8 @@ export const testimonies = [
 export const teams = [
 	{
 		id: 1,
-		imagesrc: theo,
+		imagesrc:
+			'https://res.cloudinary.com/dm2pa4nll/webmekanic/theo_jxbryf.png',
 		name: 'Theophilus Nkwuda',
 		position: 'Co-Founder',
 		fb: 'https://web.facebook.com/tiocode/',
@@ -92,7 +94,8 @@ export const teams = [
 	},
 	{
 		id: 2,
-		imagesrc: precious,
+		imagesrc:
+			'https://res.cloudinary.com/dm2pa4nll/webmekanic/team1_jjcwoz.png',
 		name: 'Precious Nwachukwu',
 		position: 'Co-Founder',
 		fb: '',
@@ -101,7 +104,8 @@ export const teams = [
 	},
 	{
 		id: 3,
-		imagesrc: mike,
+		imagesrc:
+			'https://res.cloudinary.com/dm2pa4nll/webmekanic/mike_yozvol.png',
 		name: 'Michael Nwogha',
 		position: 'Co-Founder',
 		fb: 'https://www.facebook.com/michael.nwogha/',
@@ -110,29 +114,29 @@ export const teams = [
 	},
 ];
 
-export const recentWorks = [
-	{
-		id: 1,
-		name: 'Myscooty',
-		type: 'Website Development',
-		link: 'https://myscooty.ng/',
-		mockup: ikoro,
-	},
-	{
-		id: 2,
-		name: 'Spacee',
-		type: 'mobile App Development',
-		link: 'https://spacee-nine.vercel.app/',
-		mockup: spacee,
-	},
-	{
-		id: 3,
-		name: 'RestKonnect',
-		type: 'website development',
-		link: 'https://resto-konnet.vercel.app/',
-		mockup: restokonet,
-	},
-];
+// export const recentWorks = [
+// 	{
+// 		id: 1,
+// 		name: 'Myscooty',
+// 		type: 'Website Development',
+// 		link: 'https://myscooty.ng/',
+// 		mockup: ikoro,
+// 	},
+// 	{
+// 		id: 2,
+// 		name: 'Spacee',
+// 		type: 'mobile App Development',
+// 		link: 'https://spacee-nine.vercel.app/',
+// 		mockup: spacee,
+// 	},
+// 	{
+// 		id: 3,
+// 		name: 'RestKonnect',
+// 		type: 'website development',
+// 		link: 'https://resto-konnet.vercel.app/',
+// 		mockup: restokonet,
+// 	},
+// ];
 
 export const uiUxDesign = [
 	[

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { bgImage, webMekanic } from '../assets/logo';
-import { HiOutlineBars3CenterLeft } from 'react-icons/hi2';
+import { bgImage } from '../assets/logo';
 import { VscThreeBars } from 'react-icons/vsc';
 import { Link, useLocation } from 'react-router-dom';
 import { FaFacebook, FaLinkedinIn } from 'react-icons/fa';
@@ -8,26 +7,23 @@ import { PiInstagramLogoFill } from 'react-icons/pi';
 import { RiTwitterXFill } from 'react-icons/ri';
 import { motion, useScroll } from 'framer-motion';
 import LanguageSelector from './GoogleTranslate';
+
 const Header = () => {
 	const [open, setOpen] = useState(false);
 	const { pathname } = useLocation();
-	const [rotate,setRotate] = useState(false);
+	const [rotate, setRotate] = useState(false);
 	const { scrollYProgress } = useScroll();
-	 const languages = [
-			{ code: 'en', label: 'English' },
-			{ code: 'fr', label: 'French' },
-			{ code: 'es', label: 'Spanish' },
-			{ code: 'de', label: 'German' },
-			{ code: 'zh', label: 'Chinese' },
-		];
-	
+
+
 	return (
 		<>
 			<div className='fixed top-0 z-10 left-0 md:relative bg-white w-full flex px-5 md:px-20 items-center justify-between py-5'>
 				{/* logo */}
 				<Link to={'/'}>
 					<motion.img
-						src={webMekanic}
+						src={
+							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic_spoflu.svg'
+						}
 						alt='webmekanic'
 						className='w-32 md:w-48'
 					/>
@@ -90,8 +86,21 @@ const Header = () => {
 								} delay-200 ease-in `}
 							></p>
 						</li>
+						<li className='group px-3 py-1 rounded-md overflow-hidden capitalize'>
+							<Link to={'/blogs'}>Blogs</Link>
+							<p
+								className={`w-[70%] rounded-full h-1 bg-primary -translate-x-[200%] group-hover:translate-x-0 transition ${
+									pathname == '/blogs'
+										? 'translate-x-0'
+										: '-translate-x-[200%]'
+								} delay-200 ease-in `}
+							></p>
+						</li>
 						<li className='bg-primary text-white px-4 py-3 rounded-md '>
-							<Link to='https://calendly.com/webmekanic-info/30min' target='_blank'>
+							<Link
+								to='https://calendly.com/webmekanic-info/30min'
+								target='_blank'
+							>
 								Book a Free Consultation
 							</Link>
 						</li>
@@ -113,13 +122,13 @@ const Header = () => {
 const Navbar = ({ open, setOpen }) => {
 	return (
 		<motion.div
-			className={`h-screen w-screen bg-white/20 absolute top-0 left-0 z-5`}
+			className={`h-screen w-screen bg-white/20 absolute top-0 left-0 z-5 sm:overflow-y-auto overflow-x-hidden`}
 			animate={{ translateX: open ? 0 : '200%' }}
-			transition={{ duration: 1, easings: 'linear' }}
+			transition={{ duration: 0.5, easings: 'linear' }}
 			onClick={setOpen}
 		>
 			<motion.nav
-				className={`flex flex-col gap-y-8 absolute right-0 bg-white px-5 py-10  h-[100svh] w-[70%]`}
+				className={`flex flex-col gap-y-8 absolute right-0 bg-white px-5 py-10  min-h-[600px] h-svh w-[70%]`}
 				onClick={(e) => e.stopPropagation()}
 				animate={{ translateX: open ? 0 : 100 }}
 				transition={{ duration: 0.5 }}
@@ -129,7 +138,9 @@ const Navbar = ({ open, setOpen }) => {
 					onClick={setOpen}
 				>
 					<img
-						src={webMekanic}
+						src={
+							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic_spoflu.svg'
+						}
 						alt='webmekanic'
 						className='w-32 -mt-4'
 					/>
@@ -164,19 +175,30 @@ const Navbar = ({ open, setOpen }) => {
 						<p className='w-[70%] rounded-full h-1 bg-primary -translate-x-[200%] group-hover:translate-x-0 transition delay-200 ease-in '></p>
 					</li>
 					<li
+						className='group  py-1 rounded-md overflow-hidden'
+						onClick={setOpen}
+					>
+						<Link to={'/blogs'}>Blogs</Link>
+						<p className='w-[70%] rounded-full h-1 bg-primary -translate-x-[200%] group-hover:translate-x-0 transition delay-200 ease-in '></p>
+					</li>
+					<li
 						className='border w-full my-4 text-white bg-primary hover:text-primary hover:bg-white  px-3 py-3 text-center rounded-md'
 						onClick={setOpen}
 					>
-						<Link to='https://calendly.com/webmekanic-info/30min' target='_blank' >
+						<Link
+							to='https://calendly.com/webmekanic-info/30min'
+							target='_blank'
+						>
 							Book a free Consultation
 						</Link>
 					</li>
+					<LanguageSelector />
 				</ul>
 				<img
 					src={bgImage}
 					alt=''
 					srcset=''
-					className=' opacity-10 rotate-[230deg] absolute -bottom-20 -right-20 h-[350px]'
+					className=' opacity-10 rotate-[230deg] absolute -bottom-20 -right-20 h-[350px] '
 				/>
 				<ul className=' absolute bottom-5 '>
 					<li className='flex items-center gap-x-2'>
