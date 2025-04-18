@@ -22,7 +22,7 @@ const Header = () => {
 				<Link to={'/'}>
 					<motion.img
 						src={
-							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic_spoflu.svg'
+							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic.png'
 						}
 						alt='webmekanic'
 						className='w-32 md:w-48'
@@ -122,7 +122,7 @@ const Header = () => {
 const Navbar = ({ open, setOpen }) => {
 	return (
 		<motion.div
-			className={`h-screen w-screen bg-white/20 absolute top-0 left-0 z-5 sm:overflow-y-auto overflow-x-hidden`}
+			className={`h-screen w-screen bg-white/10 absolute top-0 left-0 z-5 sm:overflow-y-auto overflow-x-hidden`}
 			animate={{ translateX: open ? 0 : '200%' }}
 			transition={{ duration: 0.5, easings: 'linear' }}
 			onClick={setOpen}

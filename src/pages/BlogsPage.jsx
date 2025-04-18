@@ -1,66 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaArrowRight, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { GOOGLE_SHEET_URL } from '../Constant';
 import Loader from '../components/Loader';
 import { motion } from 'framer-motion';
 import { formatDate } from '../utils/Date';
+import { useBlog } from '../context/blog/BlogContext';
+
 const BlogsPage = () => {
-	const [blogs, setBlogs] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
-	const [likedPosts, setLikedPosts] = useState(new Set());
-
-	const fetchPosts = async () => {
-		try {
-			setLoading(true);
-			const response = await fetch(GOOGLE_SHEET_URL);
-			
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
-
-			const data = await response.json();
-			console.log(data);
-			setBlogs(data);
-		} catch (error) {
-			console.error('Fetch error:', error);
-			setError(`Failed to fetch blogs: ${error.message}`);
-		} finally {
-			setLoading(false);
-		}
-	};
-
-	const handleLike = async (title) => {
-		if (likedPosts.has(title)) return;
-		try {
-			const formData = new URLSearchParams();
-			formData.append('title', title);
-
-			const response = await fetch(GOOGLE_SHEET_URL, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/x-www-form-urlencoded',
-				},
-				mode: 'no-cors',
-				body: formData,
-			});
-
-			// if (!response.ok) {
-			// 	throw new Error('Failed to like post');
-			// }
-
-			setLikedPosts((prev) => new Set([...prev, title]));
-			await fetchPosts();
-		} catch (error) {
-			console.error('Like error:', error);
-		}
-	};
-
-	useEffect(() => {
-		fetchPosts();
-	}, []);
-
+	const { blogs, loading, error, likedPosts, handleLike, getFeaturedBlog } =
+		useBlog();
+	const featuredBlog = getFeaturedBlog();
+	console.log(featuredBlog);
 	if (loading) {
 		return (
 			<div className='flex justify-center items-center h-[500px]'>
@@ -74,7 +24,7 @@ const BlogsPage = () => {
 			<div className='flex flex-col justify-center items-center min-h-[500px]'>
 				<div className='text-red-500 mb-4'>{error}</div>
 				<button
-					onClick={fetchPosts}
+					onClick={() => window.location.reload()}
 					className='bg-primary text-white px-4 py-2 rounded-md'
 				>
 					Try Again
@@ -83,8 +33,6 @@ const BlogsPage = () => {
 		);
 	}
 
-	const featuredBlog = blogs.find((blog) => blog.is_featured == '1');
-	console.log(blogs);
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
@@ -108,7 +56,9 @@ const BlogsPage = () => {
 					<div className='absolute inset-0 bg-black/50' />
 					<div className='relative z-10 p-5'>
 						<div className='flex flex-col gap-2'>
-							<h3 className='md:text-2xl font-thin md:font-medium'>Featured</h3>
+							<h3 className='md:text-2xl font-thin md:font-medium'>
+								Featured
+							</h3>
 							<h1 className='text-xl md:text-4xl font-medium max-w-[700px]'>
 								{featuredBlog.title}
 							</h1>
@@ -137,7 +87,7 @@ const BlogsPage = () => {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5, delay: index * 0.1 }}
-							className='w-[350px] md:w-full rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
+							className=' md:w-full rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
 						>
 							<img
 								src={blog.blog_picture}

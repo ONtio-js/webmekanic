@@ -10,9 +10,11 @@ import TermsPage from './pages/TermsPage';
 import BlogsPage from './pages/BlogsPage';
 import BlogPage from './pages/BlogPage';
 import Careers from './pages/CareersPage';
+import { BlogProvider } from './context/blog/BlogContext';
 
 function App() {
 	return (
+		<BlogProvider>
 		<Routes>
 			<Route
 				path='/'
@@ -46,20 +48,23 @@ function App() {
 					path='/terms'
 					element={<TermsPage />}
 				/>
-				<Route
-					path='/blogs'
-					element={<BlogsPage />}
-				/>
-				<Route
-					path='/blogs/:slug'
-					element={<BlogPage />}
-				/>
+				
+					<Route
+						path='/blogs'
+						element={<BlogsPage />}
+					/>
+					<Route
+						path='/blogs/:slug'
+						element={<BlogPage />}
+					/>
+			
 				<Route
 					path='/careers'
 					element={<Careers />}
 				/>
 			</Route>
 		</Routes>
+		</BlogProvider>
 	);
 }
 
