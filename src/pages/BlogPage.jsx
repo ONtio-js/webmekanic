@@ -109,13 +109,17 @@ const BlogPage = () => {
 		window.open(shareUrl, '_blank', 'width=600,height=400');
 	};
 
-	const handleLikeWithAnimation = (title, event) => {
-		// Show like animation at click position
-		setLikePosition({ x: event.clientX, y: event.clientY });
-		setShowLikeAnimation(true);
+	const handleLikeWithAnimation = (title, slug, event) => {
+		const button = event.currentTarget;
+		button.classList.add('animate-like');
+
+		// Remove animation class after animation ends
+		setTimeout(() => {
+			button.classList.remove('animate-like');
+		}, 1000);
 
 		// Call the original handleLike function
-		handleLike(title);
+		handleLike(title, slug);
 	};
 
 	if (loading) {
@@ -166,12 +170,30 @@ const BlogPage = () => {
 					name='keywords'
 					content={`${blog.title}, ${blog.short_description}, ${blog.detail_content}`}
 				/>
-				<meta name="author" content="WebMekanic" />
-				<meta name="robots" content="index, follow" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<meta name="language" content="English" />
-				<meta name="revisit-after" content="7 days" />
-				<meta name="rating" content="General" />	
+				<meta
+					name='author'
+					content='WebMekanic'
+				/>
+				<meta
+					name='robots'
+					content='index, follow'
+				/>
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1.0'
+				/>
+				<meta
+					name='language'
+					content='English'
+				/>
+				<meta
+					name='revisit-after'
+					content='7 days'
+				/>
+				<meta
+					name='rating'
+					content='General'
+				/>
 			</Helmet>
 			<motion.div
 				initial={{ opacity: 0, y: 100 }}
@@ -218,7 +240,7 @@ const BlogPage = () => {
 					<FaArrowLeft size={16} /> Back
 				</Link>
 				<img
-					src={blog.blog_picture}
+					src={blog.cover_picture}
 					alt={blog.title}
 					className='w-full h-[200px] rounded-3xl md:h-[500px] object-cover'
 				/>
@@ -236,11 +258,15 @@ const BlogPage = () => {
 					<div className='flex items-center justify-between '>
 						<button
 							onClick={(e) =>
-								handleLikeWithAnimation(blog.title, e)
+								handleLikeWithAnimation(
+									blog.title,
+									blog.slug,
+									e
+								)
 							}
-							className={`flex items-center gap-1 text-sm ${
+							className={`flex items-center gap-2 text-lg ${
 								likedPosts.has(blog.title)
-									? 'text-red-500	'
+									? 'text-red-500'
 									: 'text-gray-500 hover:text-red-500'
 							} transition-colors`}
 						>
@@ -383,7 +409,7 @@ const BlogPage = () => {
 									className='rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
 								>
 									<img
-										src={relatedBlog.blog_picture}
+										src={relatedBlog.cover_picture}
 										alt={relatedBlog.title}
 										className='w-full h-[200px] object-cover'
 									/>
@@ -392,7 +418,7 @@ const BlogPage = () => {
 											{relatedBlog.title}
 										</h4>
 										<p className='text-gray-600 text-sm mb-4'>
-											{relatedBlog.short_description}
+											{relatedBlog.short_intro}
 										</p>
 										<Link
 											to={`/blogs/${relatedBlog.slug}`}

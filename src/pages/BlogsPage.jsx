@@ -35,150 +35,184 @@ const BlogsPage = () => {
 
 	return (
 		<>
-		<Helmet>
-			<title>Blogs | WebMekanic</title>
-			<meta name="description" content="Explore our latest blog posts and stay updated with the latest trends in web development and digital marketing." />
-			<meta name="keywords" content="Blogs, Web Development, Digital Marketing, Latest Trends, WebMekanic" />
-			<meta name="author" content="WebMekanic" />
-			<meta name="robots" content="index, follow" />
-			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			<meta name="language" content="English" />
-			<meta name="revisit-after" content="7 days" />
-			<meta name="rating" content="General" />
-		</Helmet>
-		<motion.div
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5 }}
-			className='mt-20 md:mt-10 flex flex-col items-center px-5 md:px-10 lg:px-20'
-		>
-			{featuredBlog && (
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.2 }}
-					className='rounded-md w-full h-[200px] md:h-[500px] border md:p-10 text-white flex flex-col justify-end relative overflow-hidden'
-				>
-					<div
-						className='absolute inset-0 bg-cover bg-center bg-no-repeat '
-						style={{
-							backgroundImage: `url(${featuredBlog.blog_picture})`,
-						}}
-					/>
-					<div className='absolute inset-0 bg-black/50' />
-					<div className='relative  p-5'>
-						<div className='flex flex-col gap-2'>
-							<h3 className='md:text-2xl font-thin md:font-medium'>
-								Featured
-							</h3>
-							<h1 className='text-xl md:text-4xl font-medium max-w-[700px]'>
-								{featuredBlog.title}
-							</h1>
-							<div className='flex items-center gap-8'>
-								<p className='text-sm md:text-xl text-intro font-thin md:font-normal '>
-									{featuredBlog.short_description}
-								</p>
-								<Link
-									to={`/blogs/${featuredBlog.slug}`}
-									className='bg-primary text-center px-5 py-3 rounded-md min-w-[120px] hover:bg-primary/90 transition-colors'
-								>
-									Read More
-								</Link>
-							</div>
-						</div>
-					</div>
-				</motion.div>
-			)}
-
-			<section className='mt-10 mb-40 w-full'>
-				<h2 className='font-semibold text-2xl py-3'>Latest Posts</h2>
-				<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5 justify-center'>
-					{blogs.map((blog, index) => (
-						<motion.div
-							key={blog.slug || index}
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
-							className=' md:w-full rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
-						>
-							<img
-								src={blog.blog_picture}
-								alt={blog.title}
-								className='w-full h-[300px] object-cover'
-							/>
-							<div className='flex flex-col gap-2 p-4'>
-								<h3 className='text-xl font-semibold text'>
-									{blog.title}
+			<Helmet>
+				<title>Blogs | WebMekanic</title>
+				<meta
+					name='description'
+					content='Explore our latest blog posts and stay updated with the latest trends in web development and digital marketing.'
+				/>
+				<meta
+					name='keywords'
+					content='Blogs, Web Development, Digital Marketing, Latest Trends, WebMekanic'
+				/>
+				<meta
+					name='author'
+					content='WebMekanic'
+				/>
+				<meta
+					name='robots'
+					content='index, follow'
+				/>
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1.0'
+				/>
+				<meta
+					name='language'
+					content='English'
+				/>
+				<meta
+					name='revisit-after'
+					content='7 days'
+				/>
+				<meta
+					name='rating'
+					content='General'
+				/>
+			</Helmet>
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5 }}
+				className='mt-20 md:mt-10 flex flex-col items-center px-5 md:px-10 lg:px-20'
+			>
+				{featuredBlog && (
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5, delay: 0.2 }}
+						className='rounded-md w-full h-[200px] md:h-[500px] border md:p-10 text-white flex flex-col justify-end relative overflow-hidden'
+					>
+						<div
+							className='absolute inset-0 bg-cover bg-center bg-no-repeat '
+							style={{
+								backgroundImage: `url(${featuredBlog.cover_picture})`,
+							}}
+						/>
+						<div className='absolute inset-0 bg-black/50' />
+						<div className='relative  p-5'>
+							<div className='flex flex-col gap-2'>
+								<h3 className='md:text-2xl font-thin md:font-medium'>
+									Featured
 								</h3>
-								<p className='text-gray-600 text-intro'>
-									{blog.short_description}
-								</p>
-								<div className='flex items-center justify-between mt-2'>
-									<p className='text-gray-500 text-sm'>
-										{formatDate(blog.created_at)}
+								<h1 className='text-xl md:text-4xl font-medium max-w-[700px]'>
+									{featuredBlog.title}
+								</h1>
+								<div className='flex items-center gap-8'>
+									<p className='text-sm md:text-xl text-intro font-thin md:font-normal '>
+										{featuredBlog.short_intro}
 									</p>
-									<button
-										onClick={() => handleLike(blog.title)}
-										className={`flex items-center gap-1 text-sm ${
-											likedPosts.has(blog.title)
-												? 'text-red-500'
-												: 'text-gray-500 hover:text-red-500'
-										} transition-colors`}
+									<Link
+										to={`/blogs/${featuredBlog.slug}`}
+										className='bg-primary text-center px-5 py-3 rounded-md min-w-[120px] hover:bg-primary/90 transition-colors'
 									>
-										<FaHeart />
-										<span>{blog.like_count || 0}</span>
-									</button>
+										Read More
+									</Link>
 								</div>
-								<Link
-									to={`/blogs/${blog.slug}`}
-									className='flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors'
-								>
-									Read More <FaArrowRight size={15} />
-								</Link>
 							</div>
-						</motion.div>
-					))}
-				</div>
-
-				{blogs.length > 6 && (
-					<div className='flex items-center gap-8 w-full mt-20 justify-center border-t  py-2 border-b border-lightblack/20'>
-						<button
-							className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20'
-							disabled
-						>
-							Previous
-						</button>
-						<div className='flex items-center gap-3'>
-							<span className='bg-primary text-white flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-								1
-							</span>
-							<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-								2
-							</span>
-							<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-								3
-							</span>
-							<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-								4
-							</span>
-							<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-								5
-							</span>
-							<span className='text-gray-500'>of</span>
-							<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-								20
-							</span>
 						</div>
-						<button
-							className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20'
-							disabled
-						>
-							Next
-						</button>
-					</div>
+					</motion.div>
 				)}
-			</section>
-		</motion.div>
+
+				<section className='mt-10 mb-40 w-full'>
+					<h2 className='font-semibold text-2xl py-3'>
+						Latest Posts
+					</h2>
+					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10 mt-5 justify-center'>
+						{blogs.map((blog, index) => (
+							<motion.div
+								key={blog.slug || index}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{
+									duration: 0.5,
+									delay: index * 0.1,
+								}}
+								className=' md:w-full rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
+							>
+								<img
+									src={blog.cover_picture}
+									alt={blog.title}
+									className='w-full h-[300px] object-cover'
+								/>
+								<div className='flex flex-col gap-2 p-4'>
+									<h3 className='text-xl font-semibold text'>
+										{blog.title}
+									</h3>
+									<p className='text-gray-600 text-intro'>
+										{blog.short_intro}
+									</p>
+									<div className='flex items-center justify-between mt-2'>
+										<p className='text-gray-500 text-sm'>
+											{formatDate(blog.created_at)}
+										</p>
+										<button
+											onClick={() =>
+												handleLike(
+													
+													blog.slug
+												)
+											}
+											className={`flex items-center gap-1 text-sm ${
+												likedPosts.has(blog.title)
+													? 'text-red-500'
+													: 'text-gray-500 hover:text-red-500'
+											} transition-colors`}
+										>
+											<FaHeart />
+											<span>{blog.like_count || 0}</span>
+										</button>
+									</div>
+									<Link
+										to={`/blogs/${blog.slug}`}
+										className='flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors'
+									>
+										Read More <FaArrowRight size={15} />
+									</Link>
+								</div>
+							</motion.div>
+						))}
+					</div>
+
+					{blogs.length > 6 && (
+						<div className='flex items-center gap-8 w-full mt-20 justify-center border-t  py-2 border-b border-lightblack/20'>
+							<button
+								className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20'
+								disabled
+							>
+								Previous
+							</button>
+							<div className='flex items-center gap-3'>
+								<span className='bg-primary text-white flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+									1
+								</span>
+								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+									2
+								</span>
+								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+									3
+								</span>
+								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+									4
+								</span>
+								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+									5
+								</span>
+								<span className='text-gray-500'>of</span>
+								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+									20
+								</span>
+							</div>
+							<button
+								className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20'
+								disabled
+							>
+								Next
+							</button>
+						</div>
+					)}
+				</section>
+			</motion.div>
 		</>
 	);
 };
