@@ -80,7 +80,7 @@ const BlogPage = () => {
 				shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}%20${hashtags}`;
 				break;
 			case 'twitter':
-				shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}%20${hashtags}`;
+				shareUrl = `https://x.com/intent/tweet?url=${url}&text=${title}%20${hashtags}`;
 				break;
 			case 'linkedin':
 				shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}&summary=${description}%20${hashtags}`;
@@ -164,11 +164,16 @@ const BlogPage = () => {
 				<title>{blog.title}</title>
 				<meta
 					name='description'
-					content={`${blog.short_description}`}
+					content={`${blog.short_intro}`}
 				/>
 				<meta
 					name='keywords'
-					content={`${blog.title}, ${blog.short_description}, ${blog.detail_content}`}
+					content={`${blog.title}, ${blog.short_intro}, ${blog.detail_content}`}
+				/>
+				<link
+					rel='icon'
+					type='image/svg+xml'
+					href={blog.cover_picture}
 				/>
 				<meta
 					name='author'
