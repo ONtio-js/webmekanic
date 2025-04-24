@@ -261,7 +261,7 @@ const Careers = () => {
 										<div className='flex flex-col md:flex-row md:justify-between gap-3 md:gap-0'>
 											<div>
 												<h3>Job Title</h3>
-												<p className='text-black'>
+												<p className='text-black capitalize'>
 													{currentJob.job_title}
 												</p>
 											</div>
@@ -275,7 +275,7 @@ const Careers = () => {
 										</div>
 										<div>
 											<h3>Job Location</h3>
-											<p className='text-primary'>
+											<p className='text-primary capitalize font-medium'>
 												{currentJob.location}
 											</p>
 										</div>
@@ -297,9 +297,12 @@ const Careers = () => {
 
 										<div>
 											<h3>Application Process</h3>
-											<ul className='list-disc list-inside text-black mt-3'>
+											<ul className='list-disc list-inside font-semibold text-black mt-3'>
 												<li>Submit your application</li>
-												<li>Submit your application</li>
+												<li>Initial Interview</li>
+												<li>Skills Assessment</li>
+												<li>Team Fit Chat</li>
+												<li>Offer & Negotiation</li>
 											</ul>
 										</div>
 									</div>

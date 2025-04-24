@@ -7,10 +7,51 @@ import { formatDate } from '../utils/Date';
 import { useBlog } from '../context/blog/BlogContext';
 import { Helmet } from 'react-helmet';
 const BlogsPage = () => {
-	const { blogs, loading, error, likedPosts, handleLike, getFeaturedBlog } =
-		useBlog();
+	const {
+		blogs,
+		loading,
+		error,
+		likedPosts,
+		handleLike,
+		getFeaturedBlog,
+		currentPage,
+		totalPages,
+		handlePageChange,
+	} = useBlog();
 	const featuredBlog = getFeaturedBlog();
-	console.log(featuredBlog);
+
+	const renderPaginationNumbers = () => {
+		const pages = [];
+		const maxVisiblePages = 5;
+		let startPage = Math.max(
+			1,
+			currentPage - Math.floor(maxVisiblePages / 2)
+		);
+		let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+		if (endPage - startPage + 1 < maxVisiblePages) {
+			startPage = Math.max(1, endPage - maxVisiblePages + 1);
+		}
+
+		for (let i = startPage; i <= endPage; i++) {
+			pages.push(
+				<button
+					key={i}
+					onClick={() => handlePageChange(i)}
+					className={`flex items-center justify-center w-8 h-8 text-sm rounded-full ${
+						currentPage === i
+							? 'bg-primary text-white'
+							: 'bg-gray-100 hover:bg-gray-200'
+					}`}
+				>
+					{i}
+				</button>
+			);
+		}
+
+		return pages;
+	};
+
 	if (loading) {
 		return (
 			<div className='flex justify-center items-center h-[500px]'>
@@ -131,7 +172,7 @@ const BlogsPage = () => {
 								className=' md:w-full rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
 							>
 								<img
-									src={`${blog.cover_picture}`	}
+									src={`${blog.cover_picture}`}
 									alt={blog.title}
 									className='w-full h-[300px] object-cover'
 								/>
@@ -148,7 +189,10 @@ const BlogsPage = () => {
 										</p>
 										<button
 											onClick={() =>
-												handleLike(blog.title, blog.slug)
+												handleLike(
+													blog.title,
+													blog.slug
+												)
 											}
 											className={`flex items-center gap-1 text-sm ${
 												likedPosts.has(blog.title)
@@ -171,38 +215,44 @@ const BlogsPage = () => {
 						))}
 					</div>
 
-					{blogs.length > 6 && (
-						<div className='flex items-center gap-8 w-full mt-20 justify-center border-t  py-2 border-b border-lightblack/20'>
+					{blogs.length > 0 && (
+						<div className='flex items-center gap-8 w-full mt-20 justify-center border-t py-2 border-b border-lightblack/20'>
 							<button
-								className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20'
-								disabled
+								onClick={() =>
+									handlePageChange(currentPage - 1)
+								}
+								disabled={currentPage === 1}
+								className={`bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors ${
+									currentPage === 1
+										? 'opacity-50 cursor-not-allowed'
+										: ''
+								}`}
 							>
 								Previous
 							</button>
 							<div className='flex items-center gap-3'>
-								<span className='bg-primary text-white flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-									1
-								</span>
-								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-									2
-								</span>
-								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-									3
-								</span>
-								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-									4
-								</span>
-								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-									5
-								</span>
-								<span className='text-gray-500'>of</span>
-								<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-									20
-								</span>
+								{renderPaginationNumbers()}
+								{totalPages > 5 && (
+									<>
+										<span className='text-gray-500'>
+											of
+										</span>
+										<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
+											{totalPages}
+										</span>
+									</>
+								)}
 							</div>
 							<button
-								className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20'
-								disabled
+								onClick={() =>
+									handlePageChange(currentPage + 1)
+								}
+								disabled={currentPage === totalPages}
+								className={`bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors ${
+									currentPage === totalPages
+										? 'opacity-50 cursor-not-allowed'
+										: ''
+								}`}
 							>
 								Next
 							</button>

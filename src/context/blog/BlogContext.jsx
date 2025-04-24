@@ -12,9 +12,12 @@ export const useBlog = () => {
 };
 
 export const BlogProvider = ({ children }) => {
+	const [allBlogs, setAllBlogs] = useState([]);
 	const [blogs, setBlogs] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [itemsPerPage] = useState(6);
 	const [likedPosts, setLikedPosts] = useState(() => {
 		const savedLikes = localStorage.getItem('likedPosts');
 		return savedLikes ? new Set(JSON.parse(savedLikes)) : new Set();
@@ -23,29 +26,37 @@ export const BlogProvider = ({ children }) => {
 	const fetchBlogs = async () => {
 		try {
 			setLoading(true);
-			const response = await fetch(
-				`${BASE_API_URL}blog/posts/`,
-				{
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				}
-			);
+			const response = await fetch(`${BASE_API_URL}blog/posts/`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
 
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 
 			const data = await response.json();
-			setBlogs(data);
-			console.log(blogs);
+			setAllBlogs(data);
+			updatePaginatedBlogs(data, currentPage);
 		} catch (error) {
 			console.error('Fetch error:', error);
 			setError(`Failed to fetch blogs: ${error.message}`);
 		} finally {
 			setLoading(false);
 		}
+	};
+
+	const updatePaginatedBlogs = (allBlogs, page) => {
+		const startIndex = (page - 1) * itemsPerPage;
+		const endIndex = startIndex + itemsPerPage;
+		setBlogs(allBlogs.slice(startIndex, endIndex));
+		setCurrentPage(page);
+	};
+
+	const handlePageChange = (page) => {
+		updatePaginatedBlogs(allBlogs, page);
 	};
 
 	const handleLike = async (title, slug) => {
@@ -157,6 +168,9 @@ export const BlogProvider = ({ children }) => {
 		getFeaturedBlog,
 		getRelatedBlogs,
 		fetchBlogs,
+		currentPage,
+		totalPages: Math.ceil(allBlogs.length / itemsPerPage),
+		handlePageChange,
 	};
 
 	return (

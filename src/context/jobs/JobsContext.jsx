@@ -24,12 +24,15 @@ export const JobsProvider = ({ children }) => {
 	const fetchJobs = async () => {
 		try {
 			setLoading(true);
-			const response = await fetch(`${BASE_API_URL}career/careers`, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
+			const response = await fetch(
+				`${BASE_API_URL}career/careers`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
 
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);

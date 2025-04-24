@@ -4,7 +4,7 @@ import { design, mobile, monitor, support } from './assets/icon';
 
 import { testmony1 } from './assets/images';
 export const BASE_API_URL =
-	'https://pure-abbye-michaeldecent-5e21af02.koyeb.app/api/blog/posts';
+	'https://pure-abbye-michaeldecent-5e21af02.koyeb.app/api/';
 export const GOOGLE_SHEET_URL =
 	'https://script.google.com/macros/s/AKfycbztmoaej_JNWyaIw91m9CfQOIxCe-Nanc53l396GDYFe1ODTijH4WsQJlV-IF9AIqKXUw/exec';
 export const service = [
