@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import CtaButton from './CtaButton';
 import { whatsapp, x } from '../assets/icon';
 import { webMekanic } from '../assets/logo';
-
+import { cta } from '../assets/images';
 const Footer = () => {
 	return (
 		<footer className=' md:px-20'>
@@ -32,9 +32,7 @@ const Footer = () => {
 				</div>
 				<div className='mt-10 sm:mt-0'>
 					<img
-						src={
-							'https://res.cloudinary.com/dm2pa4nll/webmekanic/teams_csulur.svg'
-						}
+						src={cta}
 						alt='cta_image'
 						srcset=''
 						className='md:w-[500px] lg:w-full '
@@ -46,7 +44,7 @@ const Footer = () => {
 					<Link to='/'>
 						<img
 							src={
-								'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic.png'
+								webMekanic
 							}
 							alt='logo'
 							width={160}

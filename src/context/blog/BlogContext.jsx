@@ -24,7 +24,7 @@ export const BlogProvider = ({ children }) => {
 		try {
 			setLoading(true);
 			const response = await fetch(
-				BASE_API_URL,
+				`${BASE_API_URL}blog/posts/`,
 				{
 					method: 'GET',
 					headers: {
@@ -55,23 +55,32 @@ export const BlogProvider = ({ children }) => {
 		}
 
 		try {
-			const formData = new URLSearchParams();
-			formData.append('title', title);
+			console.log('Attempting to like post:', { title, slug });
+			const url = `${BASE_API_URL}blog/posts/like/?slug=${slug}`;
+			console.log('Request URL:', url);
 
-			const response = await fetch(
-				`${BASE_API_URL}/${slug}/like`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-					},
-					body: formData,
-				}
-			);
+			const response = await fetch(url, {
+				method: 'POST',
+
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+				},
+			});
+
+			console.log('Response status:', response.status);
+			console.log('Response headers:', response.headers);
 
 			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
+				const errorText = await response.text();
+				console.error('Error response:', errorText);
+				throw new Error(
+					`HTTP error! status: ${response.status}, message: ${errorText}`
+				);
 			}
+
+			const data = await response.json();
+			console.log('Success response:', data);
 
 			setLikedPosts((prev) => new Set([...prev, title]));
 			localStorage.setItem(
@@ -80,7 +89,8 @@ export const BlogProvider = ({ children }) => {
 			);
 			await fetchBlogs();
 		} catch (error) {
-			console.error('Like error:', error);
+			console.error('Like error details:', error);
+			alert(`Failed to like post: ${error.message}`);
 		}
 	};
 

@@ -240,7 +240,7 @@ const BlogPage = () => {
 					<FaArrowLeft size={16} /> Back
 				</Link>
 				<img
-					src={blog.cover_picture}
+					src={`${blog.cover_picture}`}
 					alt={blog.title}
 					className='w-full h-[200px] rounded-3xl md:h-[500px] object-cover'
 				/>
@@ -409,7 +409,7 @@ const BlogPage = () => {
 									className='rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
 								>
 									<img
-										src={relatedBlog.cover_picture}
+										src={`${relatedBlog.cover_picture}`}
 										alt={relatedBlog.title}
 										className='w-full h-[200px] object-cover'
 									/>

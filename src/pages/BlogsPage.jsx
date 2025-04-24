@@ -131,7 +131,7 @@ const BlogsPage = () => {
 								className=' md:w-full rounded-md overflow-hidden shadow-lg hover:shadow-xl transition-shadow'
 							>
 								<img
-									src={blog.cover_picture}
+									src={`${blog.cover_picture}`	}
 									alt={blog.title}
 									className='w-full h-[300px] object-cover'
 								/>
@@ -148,10 +148,7 @@ const BlogsPage = () => {
 										</p>
 										<button
 											onClick={() =>
-												handleLike(
-													
-													blog.slug
-												)
+												handleLike(blog.title, blog.slug)
 											}
 											className={`flex items-center gap-1 text-sm ${
 												likedPosts.has(blog.title)

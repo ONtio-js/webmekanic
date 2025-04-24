@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { bgImage } from '../assets/logo';
+import { bgImage, webMekanic } from '../assets/logo';
 import { VscThreeBars } from 'react-icons/vsc';
 import { Link, useLocation } from 'react-router-dom';
 import { FaFacebook, FaLinkedinIn } from 'react-icons/fa';
@@ -22,7 +22,7 @@ const Header = () => {
 				<Link to={'/'}>
 					<motion.img
 						src={
-							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic.png'
+						webMekanic
 						}
 						alt='webmekanic'
 						className='w-32 md:w-48'
@@ -139,7 +139,7 @@ const Navbar = ({ open, setOpen }) => {
 				>
 					<img
 						src={
-							'https://res.cloudinary.com/dm2pa4nll/webmekanic/webmekanic.png'
+							webMekanic
 						}
 						alt='webmekanic'
 						className='w-32 -mt-4'

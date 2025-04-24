@@ -6,8 +6,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { testimonies } from '../Constant';
 import { EffectFade, EffectCube } from 'swiper/modules';
-// import 'swiper/css/e';
-
+import { testmony1 } from '../assets/images';
 const Testmonials = () => {
 	return (
 		<Swiper
@@ -29,7 +28,7 @@ const Testmonials = () => {
 							<img
 								className='mx-auto sm:mx-0'
 								src={
-									'https://res.cloudinary.com/dm2pa4nll/webmekanic/testmony1_lj0ywp.svg'
+									testmony1
 								}
 								alt='testmony_image'
 								srcset=''

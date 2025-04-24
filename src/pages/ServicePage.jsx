@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { uidesign, mobile } from '../assets/images';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
 	maintenance,
@@ -117,7 +116,7 @@ const ServicePage = () => {
 					here to guide you every step of the way.
 				</p>
 				<img
-					src='https://res.cloudinary.com/dm2pa4nll/webmekanic/group_ehfkhx.svg'
+					src={group}
 					className='py-10 w-full'
 					alt='Digital Transformation'
 				/>

@@ -15,6 +15,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import {
 	work1,
 	work2,
+	work3,
 } from '../assets/RecentsWorks';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Testmonials from '../components/Testmonials';
@@ -330,7 +331,7 @@ custom software development, web development, mobile app development, business s
 						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
 								src={
-									'https://res.cloudinary.com/dm2pa4nll/webmekanic/work3_sy50oy.png'
+									work3
 								}
 								alt=''
 							/>

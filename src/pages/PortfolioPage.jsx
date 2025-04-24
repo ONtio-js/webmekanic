@@ -57,7 +57,7 @@ const PortfolioPage = () => {
 						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
 								src={
-									'https://res.cloudinary.com/dm2pa4nll/webmekanic/work3_sy50oy.png'
+									work3
 								}
 								alt=''
 							/>
@@ -127,7 +127,7 @@ const PortfolioPage = () => {
 						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
 								src={
-									'https://res.cloudinary.com/dm2pa4nll/webmekanic/shxwbilsd9yqsw54p7ev.png'
+									work2
 								}
 								alt=''
 								className='w-full'
@@ -143,7 +143,7 @@ const PortfolioPage = () => {
 						<div className=' bg-lightsecondary p-5 rounded-xl hover:scale-105 transition-all ease-linear'>
 							<img
 								src={
-									'https://res.cloudinary.com/dm2pa4nll/webmekanic/work1_yk5z14.svg'
+									work1
 								}
 								alt=''
 							/>

@@ -1,11 +1,23 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
-import { value1, value2, value3, value4,  successImage } from '../assets/careers';
+import {
+	value1,
+	value2,
+	value3,
+	value4,
+	successImage,
+	career,
+} from '../assets/careers';
 import { FaFile, FaTimes } from 'react-icons/fa';
 import { IoCloudUploadSharp } from 'react-icons/io5';
+import { useJobs } from '../context/jobs/JobsContext';
+import Loader from '../components/Loader';
+import { formatDate } from '../utils/Date';
+
 const Careers = () => {
+	const { jobs, loading, error, fetchJobs } = useJobs();
 	const values = [
 		{
 			id: 1,
@@ -17,7 +29,7 @@ const Careers = () => {
 			id: 2,
 			image: value3,
 			title: 'Excellence',
-			description: 'We don’t settle. Quality is our standard',
+			description: "We don't settle. Quality is our standard",
 		},
 		{
 			id: 3,
@@ -29,11 +41,33 @@ const Careers = () => {
 			id: 4,
 			image: value1,
 			title: 'Ownership	',
-			description: 'We take pride in our work and the impact it has on our clients.',
+			description:
+				'We take pride in our work and the impact it has on our clients.',
 		},
 	];
 	const [isOpen, setIsOpen] = useState(false);
-	const hiring = true;
+	const [currentPage, setCurrentPage] = useState(1);
+	const jobsPerPage = 1;
+	const totalPages = Math.ceil(jobs.length / jobsPerPage);
+
+	useEffect(() => {
+		fetchJobs();
+	}, []);
+
+	const handlePreviousPage = () => {
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+		}
+	};
+
+	const handleNextPage = () => {
+		if (currentPage < totalPages) {
+			setCurrentPage(currentPage + 1);
+		}
+	};
+
+	const currentJob = jobs[currentPage - 1];
+
 	return (
 		<>
 			<Helmet>
@@ -66,6 +100,7 @@ const Careers = () => {
 			<JobApplicationPortal
 				isOpen={isOpen}
 				setIsOpen={setIsOpen}
+				currentJob={currentJob}
 			/>
 			<motion.div
 				initial={{ opacity: 0, y: 100 }}
@@ -77,7 +112,7 @@ const Careers = () => {
 					className='rounded-2xl w-full h-[300px] md:h-[500px] border p-5 md:p-10 text-white flex flex-col justify-end relative'
 					style={{
 						background:
-							'url("https://res.cloudinary.com/dm2pa4nll/webmekanic/career.png")',
+							`url(${career})`,
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
@@ -189,7 +224,21 @@ const Careers = () => {
 						<h1 className='text-2xl md:text-3xl font-bold mb-10'>
 							Discover Open Roles
 						</h1>
-						{!hiring && (
+						{loading && jobs.length === 0 && (
+							<div className='flex flex-col gap-5'>
+								<p className='text-lightblack max-w-[600px] text-lg mx-auto text-center'>
+									<Loader />
+								</p>
+							</div>
+						)}
+						{!loading && error && jobs.length === 0 &&	 (
+							<div className='flex flex-col gap-5'>
+								<p className='text-red-500 max-w-[600px] text-lg mx-auto text-center'>
+									{error}
+								</p>
+							</div>
+						)}
+						{!loading && !error && jobs.length === 0 && (
 							<div className='flex flex-col gap-5'>
 								<p className='text-lightblack max-w-[600px] text-lg mx-auto text-center'>
 									At the moment, there are no job openings
@@ -198,7 +247,7 @@ const Careers = () => {
 								</p>
 							</div>
 						)}
-						{hiring && (
+						{jobs.length > 0 && (
 							<>
 								<motion.div
 									whileInView={{ opacity: 1, y: 0 }}
@@ -213,42 +262,31 @@ const Careers = () => {
 											<div>
 												<h3>Job Title</h3>
 												<p className='text-black'>
-													Product Designer
+													{currentJob.job_title}
 												</p>
 											</div>
 											<div>
 												<h4 className='text-primary bg-primary/10 px-2 py-1 rounded-md text-sm inline-block'>
-													April 21, 2025
+													{formatDate(
+														currentJob.created_at
+													)}
 												</h4>
 											</div>
 										</div>
 										<div>
 											<h3>Job Location</h3>
 											<p className='text-primary'>
-												Remote
+												{currentJob.location}
 											</p>
 										</div>
 										<div>
 											<h3>Job Description</h3>
-											<p className='text-black'>
-												Join our dynamic design team and
-												play a crucial role in crafting
-												visually captivating and highly
-												intuitive user interfaces for
-												prestigious brands across the
-												globe. You'll collaborate with
-												talented professionals,
-												utilizing cutting-edge design
-												tools and methodologies to
-												enhance user experiences. Your
-												contributions will directly
-												impact how millions of users
-												interact with these brands,
-												ensuring that every design not
-												only meets aesthetic standards
-												but also prioritizes
-												functionality and accessibility.
-											</p>
+											<div
+												dangerouslySetInnerHTML={{
+													__html: currentJob.description,
+												}}
+												className='text-black [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-4 [&>ul]:mb-4 [&>li]:mb-2 [&>h1]:text-2xl [&>h1]:font-bold [&>h1]:mb-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:mb-4 [&>h3]:text-lg [&>h3]:font-bold [&>h3]:mb-4 [&>a]:text-primary [&>a]:underline [&>strong]:font-bold [&>em]:italic'
+											/>
 										</div>
 										<button
 											onClick={() => setIsOpen(true)}
@@ -259,50 +297,59 @@ const Careers = () => {
 
 										<div>
 											<h3>Application Process</h3>
-
 											<ul className='list-disc list-inside text-black mt-3'>
 												<li>Submit your application</li>
-												<li>Attend the interview</li>
-												<li>Skill Assessment</li>
-												<li>Team fit chat</li>
-												<li>Offer & onboarding</li>
+												<li>Submit your application</li>
 											</ul>
 										</div>
 									</div>
 								</motion.div>
-								<div className='flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full mt-10 md:mt-20 justify-center border-t py-2 border-b border-lightblack/20'>
+								<div className='flex flex-row items-center gap-4 md:gap-8 w-full mt-10 md:mt-20 justify-center border-t py-2 border-b border-lightblack/20'>
 									<button
-										className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20 w-full md:w-auto'
-										disabled
+										className={`bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20 w-full md:w-auto ${
+											currentPage === 1
+												? 'opacity-50 cursor-not-allowed'
+												: ''
+										}`}
+										onClick={handlePreviousPage}
+										disabled={currentPage === 1}
 									>
 										Previous
 									</button>
-									<div className='flex items-center gap-3 flex-wrap justify-center'>
-										<span className='bg-primary text-white flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-											1
-										</span>
-										<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-											2
-										</span>
-										<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-											3
-										</span>
-										<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-											4
-										</span>
-										<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-											5
-										</span>
+									<div className='hidden md:flex items-center gap-3 flex-wrap justify-center'>
+										{Array.from(
+											{ length: totalPages },
+											(_, i) => i + 1
+										).map((page) => (
+											<span
+												key={page}
+												className={`flex items-center justify-center w-8 h-8 text-sm rounded-full cursor-pointer ${
+													currentPage === page
+														? 'bg-primary text-white'
+														: 'bg-gray-100'
+												}`}
+												onClick={() =>
+													setCurrentPage(page)
+												}
+											>
+												{page}
+											</span>
+										))}
 										<span className='text-gray-500'>
 											of
 										</span>
 										<span className='bg-gray-100 flex items-center justify-center w-8 h-8 text-sm rounded-full'>
-											20
+											{totalPages}
 										</span>
 									</div>
 									<button
-										className='bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20 w-full md:w-auto'
-										disabled
+										className={`bg-gray-100 text-gray-700 px-5 py-2 rounded-md hover:bg-gray-200 transition-colors bg-gray/20 w-full md:w-auto ${
+											currentPage === totalPages
+												? 'opacity-50 cursor-not-allowed'
+												: ''
+										}`}
+										onClick={handleNextPage}
+										disabled={currentPage === totalPages}
 									>
 										Next
 									</button>
@@ -314,29 +361,150 @@ const Careers = () => {
 			</motion.div>
 		</>
 	);
-}
+};
 
-const JobApplicationPortal = ({isOpen, setIsOpen}) => {
-	const [uploadProgress, setUploadProgress] = useState(0);
+const JobApplicationPortal = ({ isOpen, setIsOpen, currentJob }) => {
+	const [formData, setFormData] = useState({
+		portfolio: '',
+		linkedin: '',
+		resume: null,
+	});
 	const [file, setFile] = useState({
 		name: '',
 		size: 0,
 		uploaded: false,
-	});	
-	const [formData, setFormData] = useState({
-		portfolio: '',
-		linkedin: '',	
-		resume: '',
 	});
-	const [success, setSuccess] = useState(false);	
-	const handleSubmit = (e) => {
+	const [uploadProgress, setUploadProgress] = useState(0);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [error, setError] = useState(null);
+	const [success, setSuccess] = useState(false);
+	const [fieldErrors, setFieldErrors] = useState({
+		portfolio: '',
+		linkedin: '',
+	});
+	const { applyForJob } = useJobs();
+
+	const validateUrl = (url, type) => {
+		if (!url) return 'Please enter a valid URL';
+
+		try {
+			const urlObj = new URL(url);
+			if (
+				type === 'linkedin' &&
+				!urlObj.hostname.includes('linkedin.com')
+			) {
+				return 'Please enter a valid LinkedIn profile URL';
+			}
+			if (type === 'portfolio' && !urlObj.protocol.startsWith('http')) {
+				return 'Please enter a valid URL starting with http:// or https://';
+			}
+			return '';
+		} catch (e) {
+			return 'Please enter a valid URL';
+		}
+	};
+
+	const handleInputChange = (e, type) => {
+		const value = e.target.value;
+		setFormData((prev) => ({ ...prev, [type]: value }));
+
+		// Validate URL immediately
+		const error = validateUrl(value, type);
+		setFieldErrors((prev) => ({ ...prev, [type]: error }));
+	};
+
+	const handleFileChange = (selectedFile) => {
+		if (!selectedFile) return;
+
+		if (selectedFile.size > 5 * 1024 * 1024) {
+			setError('File size exceeds 5MB limit');
+			return;
+		}
+
+		if (
+			![
+				'application/pdf',
+				'application/msword',
+				'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			].includes(selectedFile.type)
+		) {
+			setError('Please upload a PDF or Word document');
+			return;
+		}
+
+		setFile({
+			name: selectedFile.name,
+			size: (selectedFile.size / 1024 / 1024).toFixed(2),
+			uploaded: false,
+		});
+		setFormData((prev) => ({ ...prev, resume: selectedFile }));
+		setError(null);
+
+		// Simulate upload progress
+		setUploadProgress(0);
+		const interval = setInterval(() => {
+			setUploadProgress((prev) => {
+				if (prev >= 100) {
+					clearInterval(interval);
+					setFile((prevFile) => ({ ...prevFile, uploaded: true }));
+					return 100;
+				}
+				return prev + 5;
+			});
+		}, 200);
+	};
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(formData);
-		setSuccess(true);
-	}
+		setIsSubmitting(true);
+		setError(null);
+
+		// Validate all fields before submission
+		const portfolioError = validateUrl(formData.portfolio, 'portfolio');
+		const linkedinError = validateUrl(formData.linkedin, 'linkedin');
+
+		setFieldErrors({
+			portfolio: portfolioError,
+			linkedin: linkedinError,
+		});
+
+		if (portfolioError || linkedinError) {
+			setIsSubmitting(false);
+			return;
+		}
+
+		try {
+			const formDataToSend = new FormData();
+
+			// Debug: Log current job details
+			console.log('Current Job:', currentJob);
+
+			// Add form fields with consistent naming
+			formDataToSend.append('portfolio_link', formData.portfolio);
+			formDataToSend.append('linkedin_profile', formData.linkedin);
+			formDataToSend.append('cv', formData.resume);
+			formDataToSend.append('job_id', currentJob.id);
+			formDataToSend.append('career', currentJob.job_title);
+
+			// Debug: Log the FormData contents before sending
+			console.log('FormData contents in JobApplicationPortal:');
+			for (let [key, value] of formDataToSend.entries()) {
+				console.log(`${key}:`, value);
+			}
+
+			await applyForJob(currentJob.id, formDataToSend);
+			setSuccess(true);
+		} catch (error) {
+			console.error('Application error:', error);
+			setError(error.message || 'Failed to submit application');
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
+
 	return (
 		<div
-			className={` w-screen h-screen bg-black/20 fixed top-0 left-0 z-50 flex  justify-center ${
+			className={`w-screen h-screen bg-black/20 fixed top-0 left-0 z-50 flex justify-center ${
 				isOpen ? 'block' : 'hidden'
 			}`}
 			onClick={() => setIsOpen(false)}
@@ -346,162 +514,97 @@ const JobApplicationPortal = ({isOpen, setIsOpen}) => {
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.5 }}
-				className='max-w-[1240px] md:w-[80%] w-[90%] h-[80%] bg-white my-auto md:mt-32 rounded-2xl p-10 overflow-y-auto no-scrollbar'
+				className='relative max-w-[1240px] md:w-[80%] w-[90%] h-[80%] bg-white my-auto md:mt-32 rounded-2xl p-10 overflow-y-auto no-scrollbar'
 				onClick={(e) => e.stopPropagation()}
 			>
 				<div className='flex justify-between items-center'>
 					<h1 className='text-2xl font-semibold'>Application Form</h1>
 					<button
 						onClick={() => setIsOpen(false)}
-						className='text-sm font-medium text-lightblack '
+						className='text-gray-500 hover:text-gray-700'
 					>
-						<FaTimes />
+						<FaTimes size={24} />
 					</button>
 				</div>
+
+				{error && (
+					<div className='mt-4 p-4 bg-red-50 text-red-600 rounded-md'>
+						{error}
+					</div>
+				)}
+
 				<form
-					action=''
-					method='post'
 					className={`mt-20 md:w-[70%] w-full mx-auto space-y-10 ${
 						success ? 'hidden' : ''
 					}`}
 					onSubmit={handleSubmit}
 				>
 					<div className='flex flex-col gap-1'>
-						<label htmlFor='name'>Portfolio Link</label>
+						<label htmlFor='portfolio'>Portfolio Link</label>
 						<input
 							type='text'
-							name='name'
-							id='name'
-							placeholder='Enter your portfolio link'
-							className='border border-lightblack/20 rounded-md p-2'
+							name='portfolio'
+							id='portfolio'
+							placeholder='Enter your portfolio link (e.g., https://yourportfolio.com)'
+							className={`border rounded-md p-2 ${
+								fieldErrors.portfolio
+									? 'border-red-500'
+									: 'border-lightblack/20'
+							}`}
 							value={formData.portfolio}
-							onChange={(e) =>
-								setFormData({
-									...formData,
-									portfolio: e.target.value,
-								})
-							}
+							onChange={(e) => handleInputChange(e, 'portfolio')}
 						/>
+						{fieldErrors.portfolio && (
+							<p className='text-red-500 text-sm mt-1'>
+								{fieldErrors.portfolio}
+							</p>
+						)}
 					</div>
 					<div className='flex flex-col gap-1'>
-						<label htmlFor='name'>LinkedIn profile link</label>
+						<label htmlFor='linkedin'>LinkedIn profile link</label>
 						<input
 							type='text'
-							name='name'
-							id='name'
-							placeholder='Enter your linkedin profile link'
-							className='border border-lightblack/20 rounded-md p-2'
+							name='linkedin'
+							id='linkedin'
+							placeholder='Enter your LinkedIn profile link (e.g., https://linkedin.com/in/yourprofile)'
+							className={`border rounded-md p-2 ${
+								fieldErrors.linkedin
+									? 'border-red-500'
+									: 'border-lightblack/20'
+							}`}
 							value={formData.linkedin}
-							onChange={(e) =>
-								setFormData({
-									...formData,
-									linkedin: e.target.value,
-								})
-							}
+							onChange={(e) => handleInputChange(e, 'linkedin')}
 						/>
+						{fieldErrors.linkedin && (
+							<p className='text-red-500 text-sm mt-1'>
+								{fieldErrors.linkedin}
+							</p>
+						)}
 					</div>
 					<div className='flex flex-col gap-1'>
-						<label htmlFor='name'>
+						<label htmlFor='resume'>
 							Cv / Resume <span className='text-red-500'>*</span>
 						</label>
-						<div className='border border-dashed  border-lightblack/20 rounded-md h-[150px] flex items-center justify-center'>
+						<div
+							className='border border-dashed border-lightblack/20 rounded-md h-[150px] flex items-center justify-center cursor-pointer hover:border-primary/50 transition-colors'
+							onDragOver={(e) => {
+								e.preventDefault();
+								e.stopPropagation();
+							}}
+							onDrop={(e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								const files = e.dataTransfer.files;
+								if (files.length) {
+									handleFileChange(files[0]);
+								}
+							}}
+							onClick={() =>
+								document.getElementById('resume').click()
+							}
+						>
 							<div className='flex flex-col gap-2 items-center justify-center'>
-								<div
-									className='relative mb-5'
-									onDragOver={(e) => {
-										e.preventDefault();
-										e.stopPropagation();
-									}}
-									onDrop={(e) => {
-										e.preventDefault();
-										e.stopPropagation();
-										const files = e.dataTransfer.files;
-										if (files.length) {
-											const file = files[0];
-											setFile({
-												name: file.name,
-												size: (
-													file.size /
-													1024 /
-													1024
-												).toFixed(2),
-												uploaded: false,
-											});
-											if (file.size <= 5 * 1024 * 1024) {
-												// 5MB limit
-												setUploadProgress(0);
-												const reader = new FileReader();
-												reader.onprogress = (event) => {
-													if (
-														event.lengthComputable
-													) {
-														const progress =
-															(event.loaded /
-																event.total) *
-															100;
-														setUploadProgress(
-															progress
-														);
-													}
-												};
-												reader.readAsDataURL(file);
-											} else {
-												alert(
-													'File size exceeds 2MB limit'
-												);
-											}
-										}
-									}}
-									onClick={() =>
-										document
-											.getElementById('fileUpload')
-											.click()
-									}
-								>
-									<input
-										type='file'
-										id='fileUpload'
-										className='hidden'
-										accept='.pdf,.doc,.docx'
-										onChange={(e) => {
-											const file = e.target.files[0];
-											setFile({
-												name: file.name,
-												size: (
-													file.size /
-													1024 /
-													1024
-												).toFixed(2),
-												uploaded: false,
-											});
-											if (file.size <= 2 * 1024 * 1024) {
-												setUploadProgress(0);
-												const reader = new FileReader();
-												reader.onprogress = (event) => {
-													if (
-														event.lengthComputable
-													) {
-														const progress =
-															(event.loaded /
-																event.total) *
-															100;
-														setUploadProgress(
-															progress
-														);
-													}
-												};
-												reader.readAsDataURL(file);
-												setFormData({
-													...formData,
-													resume: file,
-												});
-											} else {
-												alert(
-													'File size exceeds 2MB limit'
-												);
-											}
-										}}
-									/>
+								<div className='relative mb-5'>
 									<FaFile
 										size={40}
 										className='text-gray'
@@ -518,17 +621,28 @@ const JobApplicationPortal = ({isOpen, setIsOpen}) => {
 										Click to upload or Drag file here
 									</h3>
 									<p className='text-sm text-lightblack'>
-										Maximum file size: 2MB
+										Maximum file size: 5MB
 									</p>
 								</div>
 							</div>
+							<input
+								type='file'
+								id='resume'
+								name='resume'
+								className='hidden'
+								accept='.pdf,.doc,.docx'
+								onChange={(e) => {
+									const file = e.target.files[0];
+									handleFileChange(file);
+								}}
+							/>
 						</div>
 					</div>
 
-					{uploadProgress > 0 && (
+					{file.name && (
 						<div className='w-full h-[150px] border border-gray/50 space-y-5 rounded-md p-5'>
 							<div className='flex items-center gap-2'>
-								<div className='bg-gray/20  p-2 rounded-lg'>
+								<div className='bg-gray/20 p-2 rounded-lg'>
 									<FaFile className='size-10 text-gray' />
 								</div>
 								<div>
@@ -536,15 +650,15 @@ const JobApplicationPortal = ({isOpen, setIsOpen}) => {
 										{file.name}
 									</h3>
 									<p className='text-sm text-gray-500 pt-1'>
-										{file.size} mb
+										{file.size} MB
 									</p>
 								</div>
 							</div>
-							<div className='w-full h-[20px] bg-gray-200 rounded-md bg-gray'>
+							<div className='w-full h-[20px] bg-gray-200 rounded-md'>
 								<motion.div
 									initial={{ width: 0 }}
 									animate={{ width: `${uploadProgress}%` }}
-									transition={{ duration: 1 }}
+									transition={{ duration: 0.3 }}
 									className='h-[20px] bg-primary/30 rounded-md transition-all duration-300 text-center text-white text-sm'
 								>
 									{uploadProgress}%
@@ -553,8 +667,18 @@ const JobApplicationPortal = ({isOpen, setIsOpen}) => {
 						</div>
 					)}
 
-					<button className='bg-primary text-white px-10 py-2 rounded-md'>
-						Submit
+					<button
+						type='submit'
+						className='bg-primary text-white px-10 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed'
+						disabled={
+							isSubmitting ||
+							!formData.resume ||
+							!file.uploaded ||
+							fieldErrors.portfolio ||
+							fieldErrors.linkedin
+						}
+					>
+						{isSubmitting ? 'Submitting...' : 'Submit'}
 					</button>
 				</form>
 				<motion.div
@@ -570,7 +694,7 @@ const JobApplicationPortal = ({isOpen, setIsOpen}) => {
 						<img
 							src={successImage}
 							alt='success'
-							className='w-full  mx-auto'
+							className='w-full mx-auto'
 						/>
 						<h1 className='text-2xl font-semibold text-center'>
 							Thank you for your application
@@ -580,15 +704,15 @@ const JobApplicationPortal = ({isOpen, setIsOpen}) => {
 							Expect Feedback soon!
 						</p>
 						<button
-							onClick={() => (window.location.href = '/')}
+							onClick={() => setIsOpen(false)}
 							className='bg-primary text-white px-10 py-2 max-w-[300px] mx-auto rounded-md'
 						>
-							Home
+							Close
 						</button>
 					</div>
 				</motion.div>
 			</motion.div>
 		</div>
 	);
-}
-export default Careers
+};
+export default Careers;
